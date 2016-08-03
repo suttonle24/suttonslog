@@ -1,0 +1,24 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Sutton's Log</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+    <div class="wrapper">
+        <div th:replace="fragments/header"></div>
+            <div class="content">
+                <p th:text="'Hello, ' + ${name} + '!'" />
+                <div class="content-main">
+                    <h2 class="page-head" th:text="'A blog about nothing in particular, ' + ${name} + '...'"/>
+                    <p><strong>...so that means more variety!</strong> The site is in its infancy, but that doesn't mean it can't be useful.</p>
+                    <p>Eyes, hearts, and minds open; here we go...</p>
+            </div>
+        <div class="right-rail">
+
+        </div>
+            </div>
+        <div th:replace="fragments/header"></div>
+    </div>
+</body>
+</html>
