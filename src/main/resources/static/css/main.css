@@ -34,7 +34,7 @@ h1						{display:inline-block; float:left; font-size:50px; line-height:50px; pad
 h2						{font-size:24px; line-height:24px; font-family:"The Kings of the House"; font-weight:100; color:#319FA8;}
 h2.page-head			{font-size:37px; line-height:37px; margin-top:0px;}
 .entry h2				{float:left;}
-h3						{color:#004080;}
+h3						{font-family:"The Kings of the House"; color:#004080;}
 a						{color:#319FA8; text-decoration:none;}
 a:hover					{text-decoration:underline;}
 
