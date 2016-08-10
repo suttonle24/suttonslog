@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class HomepageController {
 
     @RequestMapping("/")
-    public String greeting(@RequestParam(value="name", required=false, defaultValue="World") String name, Model model) {
+    public String loadBlogHomepage(Model model) {
 
         BlogEntryService blogEntryService = new BlogEntryService();
 
@@ -22,7 +22,6 @@ public class HomepageController {
 
         model.addAttribute("blogContent", response.getBlogEntryDbo().getContents());
 
-        model.addAttribute("name", name);
         return "index";
     }
 
