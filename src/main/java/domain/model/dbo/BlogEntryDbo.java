@@ -1,6 +1,6 @@
-package suttonsLog;
+package domain.model.dbo;
 
-public class BlogEntry {
+public class BlogEntryDbo {
   private Long id;
   private String title;
   private java.sql.Timestamp datecreated;
@@ -8,8 +8,8 @@ public class BlogEntry {
   private String author;
   private String contents;
 
-  BlogEntry(Long id, String title, java.sql.Timestamp datecreated,
-            String category, String author, String contents){
+  public BlogEntryDbo(Long id, String title, java.sql.Timestamp datecreated,
+                      String category, String author, String contents){
       this.id = id;
       this.title = title;
       this.datecreated = datecreated;

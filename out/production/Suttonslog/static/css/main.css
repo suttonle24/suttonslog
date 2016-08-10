@@ -1,0 +1,93 @@
+body 					{margin:0px; padding:0px; background:url(../images/bg.png) #319FA8; font-family:"Helvetica"; color:#001a33;}
+.wrapper 				{position:relative; width:960px; margin:0px auto; padding-bottom:40px;}
+
+@font-face				
+{
+	font-family:'The Kings of the House';
+	src: url('../fonts/TheKingsoftheHouse-Regular.eot');
+	src: local('The Kings of the House'),
+						local('The Kings of the House'),
+						url('../fonts/TheKingsoftheHouse-Regular.ttf') format('truetype'),
+						url('../fonts/TheKingsoftheHouse-Regular.svg#font') format('svg'),
+						url('../fonts/TheKingsoftheHouse-Regular.eot');
+}
+
+.logo					{position:relative; float:left; width:180px; height:91px; margin:5px 0px -6px 50px; z-index:1;}
+.navigation				{position:absolute; top:50px; right:0px; padding:10px 10px 50px; border-radius:10px; background-color:rgba(255,255,255,0.2); text-align:right;}
+.navigation a,
+.navigation a:active,
+.navigation a:visited	{font-family:"The Kings of the House"; color:#fff; text-decoration:none; margin-left:15px;}
+.navigation a:hover		{text-decoration:underline;}
+.navigation a.first		{margin-left:0px;}
+.content 				{position:relative; display:inline-block; width:920px; padding:20px; border-radius:20px; background-color:#fff; z-index:2;
+						-moz-box-shadow: 5px 5px 20px #000;
+ 						-webkit-box-shadow: 5px 5px 20px #000;
+ 						box-shadow: 5px 5px 20px #000;}
+.content-main			{float:left; width:700px; margin-right:20px;}
+.right-rail				{float:right; width:200px;}
+
+
+h1						{display:inline-block; float:left; font-size:50px; line-height:50px; padding:20px 0px; margin:0px; font-family:"The Kings of the House"; font-weight:100; color:#fff;
+						-moz-text-shadow: 3px 3px 7px #000;
+ 						-webkit-text-shadow: 3px 3px 7px #000;
+ 						text-shadow: 3px 3px 7px #000;}
+h2						{font-size:24px; line-height:24px; font-family:"The Kings of the House"; font-weight:100; color:#319FA8;}
+h2.page-head			{font-size:37px; line-height:37px; margin-top:0px;}
+.entry h2				{float:left;}
+h3						{font-family:"The Kings of the House"; color:#004080;}
+a						{color:#319FA8; text-decoration:none;}
+a:hover					{text-decoration:underline;}
+
+.entry					{display:inline-block; padding:20px 0px 25px; border-bottom:1px dashed #319FA8;}
+.entry:last-child		{border-bottom:none;}
+.entry-contents		{display:inline-block; float:left; width:500px;}
+.entry h2				{display:inline-block; width:570px; margin:10px 0px; padding:10px 0px 0px 132px;}
+.entry p				{margin-top:0px;}
+.entry span.top-left img		{padding:0px 10px 10px 0px;}
+.entry span.middle-left img		{padding:10px 10px 10px 0px;}
+.entry span.bottom-left img		{padding:10px 10px 0px 0px;}
+.entry span.bottom img			{padding:10px 10px 0px 10px;}
+.entry span.bottom-right img	{padding:10px 0px 0px 10px;}
+.entry span.middle-right img	{padding:10px 0px 10px 10px;}
+.entry span.top-right img		{padding:0px 0px 10px 10px;}
+.entry span.top img				{padding:0px 10px 10px 10px;}
+h2.him					{background:url(../images/him.png) 80px 0px no-repeat;}
+h2.her					{background:url(../images/her.png) 80px 0px no-repeat;}
+
+.date					{display:inline-block; float:left; margin-right:20px; color:#004080;}
+.date .day				{display:inline-block; float:left; width:35px; font-size:30px;}
+.date .month-year 		{display:inline-block; float:left; width:69px; padding-left:5px; border-left:1px solid #004080; font-size:14px; }
+
+.blog-text				{display:inline-block; float:left; width:570px;}
+.inline-share			{text-align:right; font-size:12px;}
+
+.construction-wrap	{text-align: center;}
+.construction-head {font-family:"The Kings of the House"; font-size:55px; color:#319FA8; text-align:center;font-weight:100;
+ 																		text-shadow: 3px 3px 3px #000;}
+#blog-submit,
+#blog-submit ul			{list-style-type:none;}
+#blog-submit			{padding-left:0px;}
+#blog-submit li			{margin:20px 0px;}
+#blog-submit li ul  	{margin-left:0px; padding-left:0px;}
+#blog-submit li ul li 	{margin:5px 0px 5px 20px;}
+#blog-submit label		{font-weight:bold;}
+#blog-submit li ul li label	{font-weight:normal;}
+input.submit			{border:none; border-radius:10px; padding:10px 20px; background-color:#319FA8; font-family:"The Kings of the House"; font-size:16px; color:#fff; cursor:pointer;}
+.warning-text			{font-size:12px; font-weight:bold; color:red; line-height:20px;}
+
+.upload-instructions	{display:block; float:left; width:570px; margin-top:0px;}
+.upload-instructions li	{margin-top:15px;}
+
+/****** Admin Panel ******/
+.admin-panel			{position:absolute; top:10px; right:0px; padding:10px 10px 50px; border-radius:10px; background-color:lightgrey; text-align:right;}
+.admin-panel h2,
+.admin-panel a			{
+							-moz-text-shadow: 3px 3px 6px #000;
+ 							-webkit-text-shadow: 3px 3px 6px #000;
+ 							text-shadow: 3px 3px 6px #000;
+						}
+.admin-panel h2			{color:#fff; margin:0px 0px 10px 0px;}
+.admin-panel a,
+.admin-panel a:active,
+.admin-panel a:visited	{font-family:"The Kings of the House"; color:#fff; text-decoration:none; margin-left:15px;}
+.admin-panel a:hover	{text-decoration:underline;}
