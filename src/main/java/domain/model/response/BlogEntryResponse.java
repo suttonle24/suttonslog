@@ -1,68 +1,28 @@
 package domain.model.response;
 
+import com.sun.istack.internal.Nullable;
+import domain.model.dbo.BlogEntryDbo;
+
 public class BlogEntryResponse {
-  private Long id;
-  private String title;
-  private java.sql.Timestamp datecreated;
-  private String category;
-  private String author;
-  private String contents;
+  private BlogEntryDbo blogEntryDbo;
+  private Boolean successful;
+  private String errorMessage;
 
-  public BlogEntryResponse(Long id, String title, java.sql.Timestamp datecreated,
-                           String category, String author, String contents){
-      this.id = id;
-      this.title = title;
-      this.datecreated = datecreated;
-      this.category = category;
-      this.author = author;
-      this.contents = contents;
+  public BlogEntryResponse(BlogEntryDbo blogEntryDbo, @Nullable Boolean successful, @Nullable String errorMessage){
+    this.blogEntryDbo = blogEntryDbo;
+    this.successful = successful;
+    this.errorMessage = errorMessage;
   }
 
-  public Long getId() {
-    return id;
+  public BlogEntryDbo getBlogEntryDbo() {
+    return blogEntryDbo;
   }
 
-  public void setId(Long id) {
-    this.id = id;
+  public Boolean getSuccessful() {
+    return successful;
   }
 
-  public String getTitle() {
-    return title;
-  }
-
-  public void setTitle(String title) {
-    this.title = title;
-  }
-
-  public java.sql.Timestamp getDatecreated() {
-    return datecreated;
-  }
-
-  public void setDatecreated(java.sql.Timestamp datecreated) {
-    this.datecreated = datecreated;
-  }
-
-  public String getCategory() {
-    return category;
-  }
-
-  public void setCategory(String category) {
-    this.category = category;
-  }
-
-  public String getAuthor() {
-    return author;
-  }
-
-  public void setAuthor(String author) {
-    this.author = author;
-  }
-
-  public String getContents() {
-    return contents;
-  }
-
-  public void setContents(String contents) {
-    this.contents = contents;
+  public String getErrorMessage() {
+    return errorMessage;
   }
 }
