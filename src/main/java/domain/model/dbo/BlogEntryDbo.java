@@ -8,6 +8,8 @@ public class BlogEntryDbo {
   private String author;
   private String contents;
 
+  public BlogEntryDbo(){}
+
   public BlogEntryDbo(Long id, String title, java.sql.Timestamp datecreated,
                       String category, String author, String contents){
       this.id = id;

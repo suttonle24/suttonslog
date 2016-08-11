@@ -1,6 +1,8 @@
 package domain.connector;
 
+import domain.mapper.BlogEntryResponseMapper;
 import domain.model.dbo.BlogEntryDbo;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.sql.*;
 import java.util.LinkedList;
@@ -15,37 +17,27 @@ public class BlogEntryConnector {
     private final String USERNAME = System.getenv("suttonsLogUsername");
     private final String PASSWORD = System.getenv("suttonsLogPw");
 
+    BlogEntryResponseMapper blogEntryResponseMapper = new BlogEntryResponseMapper();
+
     public BlogEntryDbo getLatestBlogEntry(){
         BlogEntryDbo latestBlog = null;
-        Statement stmt = null;
-        ResultSet rs = null;
+        Statement query = null;
+        ResultSet queryResult = null;
         List<BlogEntryDbo> blogEntries = new LinkedList<>();
 
         try {
             Connection conn = DriverManager.getConnection(URL, USERNAME, PASSWORD);
 
-            stmt = conn.createStatement();
-            rs = stmt.executeQuery("SELECT * FROM blog_entries ORDER BY dateCreated DESC LIMIT 1");
+            query = conn.createStatement();
+            queryResult = query.executeQuery("SELECT * FROM blog_entries ORDER BY dateCreated DESC LIMIT 1");
 
-            if (stmt.execute("SELECT * FROM blog_entries ORDER BY dateCreated DESC LIMIT 1")) {
-                rs = stmt.getResultSet();
+            if (query.execute("SELECT * FROM blog_entries ORDER BY dateCreated DESC LIMIT 1")) {
+                queryResult = query.getResultSet();
             }
 
+            while (queryResult.next()) {
 
-
-            while (rs.next()) {
-
-                // Mapper should live here.
-
-                long id = rs.getLong("id");
-                String title = rs.getString("title");
-                java.sql.Timestamp datecreated = (java.sql.Timestamp)rs.getTimestamp("dateCreated");
-                String category = rs.getString("category");
-                String author = rs.getString("author");
-                String contents = rs.getString("contents");
-
-                BlogEntryDbo blogEntry = new BlogEntryDbo(id, title, datecreated, category,
-                        author, contents);
+                BlogEntryDbo blogEntry = blogEntryResponseMapper.mapBlogEntryResponse(queryResult);
 
                 try{
                     blogEntries.add(blogEntry);
@@ -69,20 +61,20 @@ public class BlogEntryConnector {
             System.out.println("VendorError: " + ex.getErrorCode());
         }
         finally{
-            if (rs != null) {
+            if (queryResult != null) {
                 try {
-                    rs.close();
+                    queryResult.close();
                 } catch (SQLException sqlEx) { } // ignore
 
-                rs = null;
+                queryResult = null;
             }
 
-            if (stmt != null) {
+            if (query != null) {
                 try {
-                    stmt.close();
+                    query.close();
                 } catch (SQLException sqlEx) { } // ignore
 
-                stmt = null;
+                query = null;
             }
 
         }
