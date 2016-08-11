@@ -20,6 +20,11 @@ public class HomepageController {
 
         BlogEntryResponse response = blogEntryService.GetLatestBlogEntry();
 
+        model.addAttribute("blogId", response.getBlogEntryDbo().getId());
+        model.addAttribute("blogTitle", response.getBlogEntryDbo().getTitle());
+        model.addAttribute("blogDate", response.getBlogEntryDbo().getDatecreated());
+        model.addAttribute("blogCategory", response.getBlogEntryDbo().getCategory());
+        model.addAttribute("blogAuthor", response.getBlogEntryDbo().getAuthor());
         model.addAttribute("blogContent", response.getBlogEntryDbo().getContents());
 
         return "index";
