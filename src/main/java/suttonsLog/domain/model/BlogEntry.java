@@ -1,29 +1,21 @@
-package suttonsLog.model;
+package suttonsLog.domain.model;
 
 public class BlogEntry {
-  private Long id;
   private String title;
   private java.sql.Timestamp datecreated;
   private String category;
   private String author;
   private String contents;
 
-  public BlogEntry(Long id, String title, java.sql.Timestamp datecreated,
+  public BlogEntry(){}
+
+  public BlogEntry(String title, java.sql.Timestamp datecreated,
             String category, String author, String contents){
-      this.id = id;
       this.title = title;
       this.datecreated = datecreated;
       this.category = category;
       this.author = author;
       this.contents = contents;
-  }
-
-  public Long getId() {
-    return id;
-  }
-
-  public void setId(Long id) {
-    this.id = id;
   }
 
   public String getTitle() {
