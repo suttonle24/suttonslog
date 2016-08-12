@@ -1,6 +1,5 @@
 package domain.model.response;
 
-import com.sun.istack.internal.Nullable;
 import domain.model.dbo.BlogEntryDbo;
 
 public class BlogEntryResponse {
@@ -8,7 +7,11 @@ public class BlogEntryResponse {
   private Boolean successful;
   private String errorMessage;
 
-  public BlogEntryResponse(BlogEntryDbo blogEntryDbo, @Nullable Boolean successful, @Nullable String errorMessage){
+  public BlogEntryResponse(BlogEntryDbo blogEntryDbo){
+    this.blogEntryDbo = blogEntryDbo;
+  }
+
+  public BlogEntryResponse(BlogEntryDbo blogEntryDbo, Boolean successful, String errorMessage){
     this.blogEntryDbo = blogEntryDbo;
     this.successful = successful;
     this.errorMessage = errorMessage;
