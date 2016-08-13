@@ -22,4 +22,18 @@ $(document).ready(function(){
             $('#blotter').html('Error! - ' + xhr.statusText);
         }
     });
+
+    $.ajax({
+        type: 'GET',
+        url: '/getLatestBlog.json',
+        dataType: 'json',
+        success: function (data) {
+            var source   = $("#entryTemplate").html();
+            var template = Handlebars.compile(source);
+            $('#blogContainer').html(template(data));
+        },
+        error: function (xhr, status) {
+            console.log('Error! - ' + xhr.statusText);
+        }
+    });
 });

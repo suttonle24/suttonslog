@@ -5,7 +5,8 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta property="og:image" content="http://suttonslog.com/images/logo.png"/>
     <link rel="stylesheet" type="text/css" th:href="@{css/main.css}" />
-    <script th:src="@{js/jquery-3.1.0.min.js}"></script>
+    <script th:src="@{js/libs/jquery-3.1.0.min.js}"></script>
+    <script th:src="@{js/libs/handlebars-v4.0.5.js}"></script>
     <script type="text/javascript" th:src="@{js/main.js}"></script>
 </head>
 <body>
@@ -16,11 +17,7 @@
                     <h2 class="page-head">A blog about nothing in particular...</h2>
                     <p><strong>...so that means more variety!</strong> The site is in its infancy, but that doesn't mean it can't be useful.</p>
                     <p>Eyes, hearts, and minds open; here we go...</p>
-                    <div class="blog-content" th:utext="${blogTitle}"></div>
-                    <div class="blog-content" th:utext="${blogDate}"></div>
-                    <div class="blog-content" th:utext="${blogCategory}"></div>
-                    <div class="blog-content" th:utext="${blogAuthor}"></div>
-                    <div class="blog-content" th:utext="${blogContent}"></div>
+                    <div id="blogContainer"></div>
                 </div>
                 <div class="right-rail">
 
@@ -35,5 +32,18 @@
             </div>
         <div th:replace="fragments/footer"></div>
     </div>
+    <script id="entryTemplate" type="text/x-handlebars-template">
+        <div id="{{id}}" class="entry">
+            <h2 class="{{author}}">{{title}}</h2>
+            <div class="date">
+                <div class="day">{{blogDate.day}}</div>
+                <div class="month-year">{{blogDate.month}}<br />{{blogDate.year}}</div>
+            </div>
+            <div class="blog-text">{{{contents}}}</div>
+            <div class="inline-share">
+                <strong>Share</strong><a href="{{id}}">this post</a> with your friends/nemeses.
+            </div>
+        </div>
+    </script>
 </body>
 </html>

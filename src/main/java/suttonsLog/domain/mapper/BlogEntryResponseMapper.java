@@ -10,10 +10,12 @@ import suttonsLog.domain.model.BlogEntry;
 public class BlogEntryResponseMapper {
     public BlogEntry mapBlogEntryResponse(BlogEntryResponse blogEntryResponse){
         BlogEntry blogEntry = new BlogEntry();
+        DateMapper dateMapper = new DateMapper();
         
         try{
+            blogEntry.setId(blogEntryResponse.getBlogEntryDbo().getId());
             blogEntry.setTitle(blogEntryResponse.getBlogEntryDbo().getTitle());
-            blogEntry.setDatecreated(blogEntryResponse.getBlogEntryDbo().getDatecreated());
+            blogEntry.setBlogDate(dateMapper.mapBlogDate(blogEntryResponse.getBlogEntryDbo().getDatecreated()));
             blogEntry.setCategory(blogEntryResponse.getBlogEntryDbo().getCategory());
             blogEntry.setAuthor(blogEntryResponse.getBlogEntryDbo().getAuthor());
             blogEntry.setContents(blogEntryResponse.getBlogEntryDbo().getContents());
