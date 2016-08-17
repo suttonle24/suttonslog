@@ -5,11 +5,14 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta property="og:image" content="http://suttonslog.com/images/logo.png"/>
     <link rel="stylesheet" type="text/css" th:href="@{css/main.css}" />
-    <script th:src="@{js/libs/jquery-3.1.0.min.js}"></script>
-    <script th:src="@{js/libs/handlebars-v4.0.5.js}"></script>
+    <script th:src="@{js/libs/jQuery.js}"></script>
+    <script th:src="@{js/libs/Handlebars.js}"></script>
+    <script th:src="@{js/libs/mockjax.js}"></script>
+    <script th:src="@{js/libs/require.js}"></script>
     <script type="text/javascript" th:src="@{js/main.js}"></script>
 </head>
 <body>
+    <input id="mockData" type="hidden" th:value="${mockData}"/>
     <div class="wrapper">
         <div th:replace="fragments/header"></div>
             <div class="content">
@@ -24,7 +27,10 @@
                     <h2>Around the homestead</h2>
 
                     <h3>Weather</h3>
-                    <div id="weather"></div>
+                    <div id="weather">
+                        <div class="current"></div>
+                        <div class="forecast"></div>
+                    </div>
 
                     <h3>Police Blotter</h3>
                     <div id="blotter"></div>
@@ -32,6 +38,14 @@
             </div>
         <div th:replace="fragments/footer"></div>
     </div>
+    <script>
+        require(['main'], function() {
+            if($('#mockData').val() === "true"){
+                initMocks();
+            }
+            initPage();
+        });
+    </script>
     <script id="entryTemplate" type="text/x-handlebars-template">
         <div id="{{id}}" class="entry">
             <h2 class="{{author}}">{{title}}</h2>
@@ -44,6 +58,36 @@
                 <strong>Share</strong><a href="{{id}}">this post</a> with your friends/nemeses.
             </div>
         </div>
+    </script>
+    <script id="weatherCurrentTemplate" type="text/x-handlebars-template">
+        {{#each list}}
+        <div class="day">
+            <div class="date">
+                Day: {{dt_text}}
+            </div>
+            <div>
+                High: {{#temperature main.temp}} Deg. F
+            </div>
+            <div>
+                Low: {{#temperature main.temp}} Deg. F
+            </div>
+        </div>
+        {{/each}}
+    </script>
+    <script id="weatherForecastTemplate" type="text/x-handlebars-template">
+        {{#each list}}
+        <div class="day">
+            <div class="date">
+                Day: {{dt_text}}
+            </div>
+            <div>
+                High: {{#temperature main.temp}} Deg. F
+            </div>
+            <div>
+                Low: {{#temperature main.temp}} Deg. F
+            </div>
+        </div>
+        {{/each}}
     </script>
 </body>
 </html>

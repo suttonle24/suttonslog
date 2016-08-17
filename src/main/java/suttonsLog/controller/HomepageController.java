@@ -16,7 +16,8 @@ import suttonsLog.domain.service.impl.BlogService;
 public class HomepageController {
 
     @RequestMapping("/")
-    public String loadBlogHomepage(Model model) {
+    public String loadBlogHomepage(@RequestParam(value="mockData", required=false, defaultValue="false") boolean mockData, Model model) {
+        model.addAttribute("mockData", mockData);
         return "index";
     }
 
