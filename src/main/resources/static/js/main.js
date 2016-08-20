@@ -1,16 +1,80 @@
 define('main', ['/js/libs/jquery.js', '/js/libs/Handlebars.js', '/js/libs/mockjax.js'], function(jQuery, Handlebars) {
-    Handlebars.registerHelper('temperature', function(kelvin) {
-        // Convert K to F.
-        return 9/5(kelvin - 273) + 32;
-    });
 
     window.initPage = function(){
+        var date = new Date(),
+            dateString = date.toString(),
+            dateStringParts = dateString.split(' ');
+
+        // dateStringParts weekday[0] month[1] dayOfMonth[2] year[3]
+        Handlebars.registerHelper('date-weekday', function() {
+            return dateStringParts[0];
+        });
+        Handlebars.registerHelper('date-dayOfMonth', function() {
+            return dateStringParts[2];
+        });
+        Handlebars.registerHelper('date-month', function() {
+            return dateStringParts[1];
+        });
+        Handlebars.registerHelper('date-year', function() {
+            return dateStringParts[3];
+        });
+        Handlebars.registerHelper('temperature', function(kelvin) {
+            // Convert K to F.
+            return Math.round(9 / 5 * (kelvin - 273) + 32);
+        });
+
+        Handlebars.registerHelper('weatherImg', function(filename) {
+
+            switch(filename){
+                case '01d':
+                case '01n':
+                    return '<img src="/images/weather/01d.png" />';
+                    break;
+                case '02d':
+                case '02n':
+                    return '<img src="/images/weather/02d.png" />';
+                    break;
+                case '03d':
+                case '03n':
+                    return '<img src="/images/weather/03d.png" />';
+                    break;
+                case '04d':
+                case '04n':
+                    return '<img src="/images/weather/04d.png" />';
+                    break;
+                case '09d':
+                case '09n':
+                    return '<img src="/images/weather/09d.png" />';
+                    break;
+                case '10d':
+                case '10n':
+                    return '<img src="/images/weather/10d.png" />';
+                    break;
+                case '11d':
+                case '11n':
+                    return '<img src="/images/weather/11d.png" />';
+                    break;
+                case '13d':
+                case '13n':
+                    return '<img src="/images/weather/13d.png" />';
+                    break;
+                case '50d':
+                case '50n':
+                    return '<img src="/images/weather/50d.png" />';
+                    break;
+                default:
+                    break;
+            }
+        });
+
         $.ajax({
             type: 'GET',
             url: 'http://api.openweathermap.org/data/2.5/weather?id=5802340&APPID=b5928ee8c96cf5f4fac7f4cf6098f831',
             dataType: 'json',
             success: function (data) {
-                $('#weather .current').html('Weather in ' + data.city.name + '...');
+                var source   = $("#weatherCurrentTemplate").html();
+                var template = Handlebars.compile(source);
+                $('#weather .current').html(template(data));
             },
             error: function (xhr, status) {
                 $('#weather .current').html('Error! - ' + xhr.statusText);
@@ -22,7 +86,9 @@ define('main', ['/js/libs/jquery.js', '/js/libs/Handlebars.js', '/js/libs/mockja
             url: 'http://api.openweathermap.org/data/2.5/forecast/city?id=5802340&APPID=b5928ee8c96cf5f4fac7f4cf6098f831',
             dataType: 'json',
             success: function (data) {
-                $('#weather .forecast').html('Weather in ' + data.city.name + '...');
+                var source   = $("#weatherForecastTemplate").html();
+                var template = Handlebars.compile(source);
+                $('#weather .forecast').html(template(data));
             },
             error: function (xhr, status) {
                 $('#weather .forecast').html('Error! - ' + xhr.statusText);
