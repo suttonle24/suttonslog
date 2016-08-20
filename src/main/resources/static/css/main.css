@@ -25,9 +25,16 @@ body 					{margin:0px; padding:0px; background:url(../images/bg.png) #319FA8; fo
  						box-shadow: 5px 5px 20px #000;}
 .content-main			{float:left; width:700px; margin-right:20px;}
 .right-rail				{float:right; width:200px;}
+.right-rail h2,
+.right-rail h3			{text-align:center;}
+#weather		        {color:#319FA8;}
 #weather .current       {text-align:center;}
 #weather .current img   {width:75px; height:auto;}
-#weather .current .date  {text-align:center; float:none; display:block; margin:0;}
+#weather .current .city {font-size:20px; margin-bottom:5px;}
+#weather .current .date  {text-align:center; float:none; display:block; margin:0; color:#319FA8;}
+#weather .current .temp-display .temp  {font-size:40px;}
+#weather .current .temp-display .degrees  {font-size:20px;}
+#weather .current .temp-display .farenheit  {font-size:18px;}
 #weather .current .temp-display  {display:inline-block;}
 #weather .current .temp-display div  {float:left;}
 
