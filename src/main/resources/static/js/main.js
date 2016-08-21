@@ -1,22 +1,35 @@
 define('main', ['/js/libs/jquery.js', '/js/libs/Handlebars.js', '/js/libs/mockjax.js'], function(jQuery, Handlebars) {
 
     window.initPage = function(){
-        var date = new Date(),
-            dateString = date.toString(),
-            dateStringParts = dateString.split(' ');
+        function getDate(dateTime){
+            var date = new Date(dateTime * 1000),
+                dateString = date.toString(),
+                dateStringParts = dateString.split(' ');
 
-        // dateStringParts weekday[0] month[1] dayOfMonth[2] year[3]
-        Handlebars.registerHelper('date-weekday', function() {
-            return dateStringParts[0];
+            return dateStringParts;
+        }
+
+        // date weekday[0] month[1] dayOfMonth[2] year[3]
+        Handlebars.registerHelper('date-weekday', function(dateTime) {
+            var date = getDate(dateTime);
+            return date[0];
         });
-        Handlebars.registerHelper('date-dayOfMonth', function() {
-            return dateStringParts[2];
+        Handlebars.registerHelper('date-dayOfMonth', function(dateTime) {
+            var date = getDate(dateTime);
+            return date[2];
         });
-        Handlebars.registerHelper('date-month', function() {
-            return dateStringParts[1];
+        Handlebars.registerHelper('date-month', function(dateTime) {
+            var date = getDate(dateTime);
+            return date[1];
         });
-        Handlebars.registerHelper('date-year', function() {
-            return dateStringParts[3];
+        Handlebars.registerHelper('date-year', function(dateTime) {
+            var date = getDate(dateTime);
+            return date[3];
+        });
+        Handlebars.registerHelper('date-time', function(dateTime) {
+            var date = getDate(dateTime),
+                time = date[4];
+            return time.substring(0, 4);
         });
         Handlebars.registerHelper('temperature', function(kelvin) {
             // Convert K to F.
@@ -88,7 +101,13 @@ define('main', ['/js/libs/jquery.js', '/js/libs/Handlebars.js', '/js/libs/mockja
             success: function (data) {
                 var source   = $("#weatherForecastTemplate").html();
                 var template = Handlebars.compile(source);
-                $('#weather .forecast').html(template(data));
+                $('#weather .forecast .list').html(template(data));
+
+                var listWidth = 0;
+                $('#weather .forecast .list .day').each(function() {
+                    listWidth += $(this).outerWidth();
+                });
+                $('#weather .forecast .list').width(listWidth);
             },
             error: function (xhr, status) {
                 $('#weather .forecast').html('Error! - ' + xhr.statusText);

@@ -29,7 +29,9 @@
                     <h3>Weather</h3>
                     <div id="weather">
                         <div class="current"></div>
-                        <div class="forecast"></div>
+                        <div class="forecast">
+                            <div class="list"></div>
+                        </div>
                     </div>
 
                     <h3>Police Blotter</h3>
@@ -81,7 +83,25 @@
         </div>
     </script>
     <script id="weatherForecastTemplate" type="text/x-handlebars-template">
-
+        {{#each list}}
+        <div class="day">
+            <div>
+                {{#weatherImg this.weather.0.icon}}{{/weatherImg}}
+            </div>
+            <div class="temp-display">
+                <div class="temp">{{#temperature this.main.temp}}{{/temperature}}</div>
+                <div class="degrees">&deg;</div>
+                <div class="farenheit">F</div>
+            </div>
+            <div class="date">
+                {{#date-weekday this.dt}}{{/date-weekday}},
+                {{#date-month this.dt}}{{/date-month}}
+                {{#date-dayOfMonth this.dt}}{{/date-dayOfMonth}},
+                {{#date-year this.dt}}{{/date-year}}
+                {{#date-time this.dt}}{{/date-time}}
+            </div>
+        </div>
+        {{/each}}
     </script>
 </body>
 </html>
