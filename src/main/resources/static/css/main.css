@@ -28,7 +28,7 @@ body 					{margin:0px; padding:0px; background:url(../images/bg.png) #319FA8; fo
 .right-rail h2,
 .right-rail h3			{text-align:center;}
 #weather		        {color:#319FA8;}
-#weather .current       {text-align:center;}
+#weather .current       {text-align:center; margin-bottom:20px;}
 #weather .current img   {width:75px; height:auto;}
 #weather .current .city {font-size:20px; margin-bottom:5px;}
 #weather .current .date  {text-align:center; float:none; display:block; margin:0; color:#319FA8;}
@@ -37,9 +37,10 @@ body 					{margin:0px; padding:0px; background:url(../images/bg.png) #319FA8; fo
 #weather .current .temp-display .farenheit  {font-size:18px;}
 #weather .current .temp-display  {display:inline-block;}
 #weather .current .temp-display div  {float:left;}
-#weather .forecast {display:inline-block; overflow-x:scroll; max-width:100%;}
+#weather .forecast {display:inline-block; overflow-x:scroll; max-width:100%; padding-bottom:.75em;
+                    overflow-scrolling:touch; -webkit-overflow-scrolling:touch;}
 #weather .forecast .list {display:inline-block;}
-#weather .forecast .day {display:inline-block; float:left; text-align:center; padding-right: 10px;}
+#weather .forecast .day {display:inline-block; float:left; text-align:center; padding-right: 15px;}
 #weather .forecast img   {width:45px; height:auto;}
 #weather .forecast .city {font-size:14px; margin-bottom:5px;}
 #weather .forecast .date  {font-size:10px; text-align:center; float:none; display:block; margin:0; color:#319FA8;}

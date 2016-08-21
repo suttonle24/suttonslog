@@ -29,7 +29,7 @@ define('main', ['/js/libs/jquery.js', '/js/libs/Handlebars.js', '/js/libs/mockja
         Handlebars.registerHelper('date-time', function(dateTime) {
             var date = getDate(dateTime),
                 time = date[4];
-            return time.substring(0, 4);
+            return time.substring(0, 5);
         });
         Handlebars.registerHelper('temperature', function(kelvin) {
             // Convert K to F.
