@@ -19,7 +19,8 @@ public class BlogEntryConnector {
 
     BlogEntryResponseMapper blogEntryResponseMapper = new BlogEntryResponseMapper();
 
-    public BlogEntryDbo getLatestBlogEntry(){
+
+    private List<BlogEntryDbo> makeBlogRequest(String sqlStatement){
         BlogEntryDbo latestBlog = null;
         Statement query = null;
         ResultSet queryResult = null;
@@ -29,9 +30,9 @@ public class BlogEntryConnector {
             Connection conn = DriverManager.getConnection(URL, USERNAME, PASSWORD);
 
             query = conn.createStatement();
-            queryResult = query.executeQuery("SELECT * FROM blog_entries ORDER BY dateCreated DESC LIMIT 1");
+            queryResult = query.executeQuery(sqlStatement);
 
-            if (query.execute("SELECT * FROM blog_entries ORDER BY dateCreated DESC LIMIT 1")) {
+            if (query.execute(sqlStatement)) {
                 queryResult = query.getResultSet();
             }
 
@@ -45,14 +46,6 @@ public class BlogEntryConnector {
                 catch(Exception e){
                     System.out.print(e.getMessage());
                 }
-            }
-
-            try{
-                latestBlog = blogEntries.get(0);
-            }
-            catch(Exception e){
-                latestBlog = null;
-                System.out.print(e.getMessage());
             }
         } catch (SQLException ex) {
             // handle any errors
@@ -80,7 +73,28 @@ public class BlogEntryConnector {
         }
 
 
+        return blogEntries;
+    }
+
+    public BlogEntryDbo getLatestBlogEntry(){
+        BlogEntryDbo latestBlog = null;
+        String sqlStatement = "SELECT * FROM blog_entries ORDER BY dateCreated DESC LIMIT 1";
+        List<BlogEntryDbo> blogEntries = makeBlogRequest(sqlStatement);
+
+        try{
+            latestBlog = blogEntries.get(0);
+        }
+        catch(Exception e){
+            latestBlog = null;
+            System.out.print(e.getMessage());
+        }
+
         return latestBlog;
+    }
+
+    public List<BlogEntryDbo> getAllBlogEntries(){
+        String sqlStatement = "SELECT * FROM blog_entries ORDER BY dateCreated DESC";
+        return makeBlogRequest(sqlStatement);
     }
 
 

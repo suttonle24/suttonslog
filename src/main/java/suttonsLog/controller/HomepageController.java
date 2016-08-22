@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import suttonsLog.domain.model.BlogEntry;
 import suttonsLog.domain.service.impl.BlogService;
 
+import java.util.List;
+
 /**
  * Created by leens on 7/20/2016.
  */
@@ -27,6 +29,14 @@ public class HomepageController {
         BlogService blogService = new BlogService();
 
         return blogService.getLatestBlogEntry();
+    }
+
+    @RequestMapping(value="/getAllBlogs.json", method= RequestMethod.GET)
+    public @ResponseBody
+    List<BlogEntry> getAllBlogs() {
+        BlogService blogService = new BlogService();
+
+        return blogService.getAllBlogEntries();
     }
 
 }

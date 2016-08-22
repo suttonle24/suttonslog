@@ -128,10 +128,10 @@ define('main', ['/js/libs/jquery.js', '/js/libs/Handlebars.js', '/js/libs/mockja
 
         $.ajax({
             type: 'GET',
-            url: '/getLatestBlog.json',
+            url: '/getAllBlogs.json',
             dataType: 'json',
             success: function (data) {
-                var source   = $("#entryTemplate").html();
+                var source   = $("#blogEntriesTemplate").html();
                 var template = Handlebars.compile(source);
                 $('#blogContainer').html(template(data));
             },
