@@ -5,11 +5,6 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta property="og:image" content="http://suttonslog.com/images/logo.png"/>
     <link rel="stylesheet" type="text/css" th:href="@{css/main.css}" />
-    <script th:src="@{js/libs/jQuery.js}"></script>
-    <script th:src="@{js/libs/Handlebars.js}"></script>
-    <script th:src="@{js/libs/mockjax.js}"></script>
-    <script th:src="@{js/libs/require.js}"></script>
-    <script type="text/javascript" th:src="@{js/main.js}"></script>
 </head>
 <body>
     <input id="mockData" type="hidden" th:value="${mockData}"/>
@@ -40,14 +35,7 @@
             </div>
         <div th:replace="fragments/footer"></div>
     </div>
-    <script>
-        require(['main'], function() {
-            if($('#mockData').val() === "true"){
-                initMocks();
-            }
-            initPage();
-        });
-    </script>
+    <script data-main="js/homepage/main" th:src="@{js/libs/require.js}"></script>
     <script id="blogEntriesTemplate" type="text/x-handlebars-template">
         {{#each this}}
             <div id="{{id}}" class="entry">

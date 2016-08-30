@@ -1,147 +1,8 @@
-define('main', ['/js/libs/jquery.js', '/js/libs/Handlebars.js', '/js/libs/mockjax.js'], function(jQuery, Handlebars) {
-
-    window.initPage = function(){
-        function getDate(dateTime){
-            var date = new Date(dateTime * 1000),
-                dateString = date.toString(),
-                dateStringParts = dateString.split(' ');
-
-            return dateStringParts;
-        }
-
-        // date weekday[0] month[1] dayOfMonth[2] year[3]
-        Handlebars.registerHelper('date-weekday', function(dateTime) {
-            var date = getDate(dateTime);
-            return date[0];
-        });
-        Handlebars.registerHelper('date-dayOfMonth', function(dateTime) {
-            var date = getDate(dateTime);
-            return date[2];
-        });
-        Handlebars.registerHelper('date-month', function(dateTime) {
-            var date = getDate(dateTime);
-            return date[1];
-        });
-        Handlebars.registerHelper('date-year', function(dateTime) {
-            var date = getDate(dateTime);
-            return date[3];
-        });
-        Handlebars.registerHelper('date-time', function(dateTime) {
-            var date = getDate(dateTime),
-                time = date[4];
-            return time.substring(0, 5);
-        });
-        Handlebars.registerHelper('temperature', function(kelvin) {
-            // Convert K to F.
-            return Math.round(9 / 5 * (kelvin - 273) + 32);
-        });
-
-        Handlebars.registerHelper('weatherImg', function(filename) {
-
-            switch(filename){
-                case '01d':
-                case '01n':
-                    return '<img src="/images/weather/01d.png" />';
-                    break;
-                case '02d':
-                case '02n':
-                    return '<img src="/images/weather/02d.png" />';
-                    break;
-                case '03d':
-                case '03n':
-                    return '<img src="/images/weather/03d.png" />';
-                    break;
-                case '04d':
-                case '04n':
-                    return '<img src="/images/weather/04d.png" />';
-                    break;
-                case '09d':
-                case '09n':
-                    return '<img src="/images/weather/09d.png" />';
-                    break;
-                case '10d':
-                case '10n':
-                    return '<img src="/images/weather/10d.png" />';
-                    break;
-                case '11d':
-                case '11n':
-                    return '<img src="/images/weather/11d.png" />';
-                    break;
-                case '13d':
-                case '13n':
-                    return '<img src="/images/weather/13d.png" />';
-                    break;
-                case '50d':
-                case '50n':
-                    return '<img src="/images/weather/50d.png" />';
-                    break;
-                default:
-                    break;
-            }
-        });
-
-        $.ajax({
-            type: 'GET',
-            url: 'http://api.openweathermap.org/data/2.5/weather?id=5802340&APPID=b5928ee8c96cf5f4fac7f4cf6098f831',
-            dataType: 'json',
-            success: function (data) {
-                var source   = $("#weatherCurrentTemplate").html();
-                var template = Handlebars.compile(source);
-                $('#weather .current').html(template(data));
-            },
-            error: function (xhr, status) {
-                $('#weather .current').html('Error! - ' + xhr.statusText);
-            }
-        });
-
-        $.ajax({
-            type: 'GET',
-            url: 'http://api.openweathermap.org/data/2.5/forecast/city?id=5802340&APPID=b5928ee8c96cf5f4fac7f4cf6098f831',
-            dataType: 'json',
-            success: function (data) {
-                var source   = $("#weatherForecastTemplate").html();
-                var template = Handlebars.compile(source);
-                $('#weather .forecast .list').html(template(data));
-
-                var listWidth = 0;
-                $('#weather .forecast .list .day').each(function() {
-                    listWidth += $(this).outerWidth();
-                });
-                $('#weather .forecast .list').width(listWidth);
-            },
-            error: function (xhr, status) {
-                $('#weather .forecast').html('Error! - ' + xhr.statusText);
-            }
-        });
-
-        $.ajax({
-            type: 'GET',
-            url: 'http://api.spotcrime.com/crimes.json?lat=47.372298&lon=-122.03258&radius=0.02&callback=jQuery2130688044759012147_1470334198788&key=1470334198794',
-            dataType: 'json',
-            success: function (data) {
-                $('#blotter').html(data);
-            },
-            error: function (xhr, status) {
-                $('#blotter').html('Error! - ' + xhr.statusText);
-            }
-        });
-
-        $.ajax({
-            type: 'GET',
-            url: '/getAllBlogs.json',
-            dataType: 'json',
-            success: function (data) {
-                var source   = $("#blogEntriesTemplate").html();
-                var template = Handlebars.compile(source);
-                $('#blogContainer').html(template(data));
-            },
-            error: function (xhr, status) {
-                console.log('Error! - ' + xhr.statusText);
-            }
-        });
-    };
-
-    window.initMocks = function(){
+/**
+ * Created by leens on 8/30/2016.
+ */
+define('mocks', ['../libs/jquery', '../libs/mockjax'], function(jQuery) {
+    window.initMocks = function () {
         $.mockjax([
             {
                 url: "http://api.openweathermap.org/data/2.5/weather?id=5802340&APPID=b5928ee8c96cf5f4fac7f4cf6098f831",
@@ -187,7 +48,7 @@ define('main', ['/js/libs/jquery.js', '/js/libs/Handlebars.js', '/js/libs/mockja
                     "cod": 200
                 },
                 responseTime: [250, 750],
-                onAfterComplete: function() {
+                onAfterComplete: function () {
                     console.log('Mockjax intercepted the request.');
                 }
             },
@@ -1494,13 +1355,10 @@ define('main', ['/js/libs/jquery.js', '/js/libs/Handlebars.js', '/js/libs/mockja
                     ]
                 },
                 responseTime: [250, 750],
-                onAfterComplete: function() {
+                onAfterComplete: function () {
                     console.log('Mockjax intercepted the request.');
                 }
             }
         ]);
     };
 });
-
-
-
