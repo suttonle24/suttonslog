@@ -2,8 +2,11 @@ package domain.model.response;
 
 import domain.model.dbo.BlogEntryDbo;
 
+import java.util.List;
+
 public class BlogEntryResponse {
   private BlogEntryDbo blogEntryDbo;
+  private List<BlogEntryDbo> blogEntries;
   private Boolean successful;
   private String errorMessage;
 
@@ -15,6 +18,21 @@ public class BlogEntryResponse {
     this.blogEntryDbo = blogEntryDbo;
     this.successful = successful;
     this.errorMessage = errorMessage;
+  }
+
+
+    public BlogEntryResponse(List<BlogEntryDbo> blogEntries){
+        this.blogEntries = blogEntries;
+    }
+
+  public BlogEntryResponse(List<BlogEntryDbo> blogEntries, Boolean successful, String errorMessage){
+    this.blogEntries = blogEntries;
+    this.successful = successful;
+    this.errorMessage = errorMessage;
+  }
+
+  public List<BlogEntryDbo> getBlogEntries() {
+    return blogEntries;
   }
 
   public BlogEntryDbo getBlogEntryDbo() {

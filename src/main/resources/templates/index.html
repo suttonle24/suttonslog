@@ -5,11 +5,9 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta property="og:image" content="http://suttonslog.com/images/logo.png"/>
     <link rel="stylesheet" type="text/css" th:href="@{css/main.css}" />
-    <script th:src="@{js/libs/jquery-3.1.0.min.js}"></script>
-    <script th:src="@{js/libs/handlebars-v4.0.5.js}"></script>
-    <script type="text/javascript" th:src="@{js/main.js}"></script>
 </head>
 <body>
+    <input id="mockData" type="hidden" th:value="${mockData}"/>
     <div class="wrapper">
         <div th:replace="fragments/header"></div>
             <div class="content">
@@ -24,7 +22,12 @@
                     <h2>Around the homestead</h2>
 
                     <h3>Weather</h3>
-                    <div id="weather"></div>
+                    <div id="weather">
+                        <div class="current"></div>
+                        <div class="forecast">
+                            <div class="list"></div>
+                        </div>
+                    </div>
 
                     <h3>Police Blotter</h3>
                     <div id="blotter"></div>
@@ -32,18 +35,62 @@
             </div>
         <div th:replace="fragments/footer"></div>
     </div>
-    <script id="entryTemplate" type="text/x-handlebars-template">
-        <div id="{{id}}" class="entry">
-            <h2 class="{{author}}">{{title}}</h2>
-            <div class="date">
-                <div class="day">{{blogDate.day}}</div>
-                <div class="month-year">{{blogDate.month}}<br />{{blogDate.year}}</div>
+    <script data-main="js/homepage/main" th:src="@{js/libs/require.js}"></script>
+    <script id="blogEntriesTemplate" type="text/x-handlebars-template">
+        {{#each this}}
+            <div id="{{id}}" class="entry">
+                <h2 class="{{author}}">{{title}}</h2>
+                <div class="date">
+                    <div class="day">{{blogDate.day}}</div>
+                    <div class="month-year">{{blogDate.month}}<br />{{blogDate.year}}</div>
+                </div>
+                <div class="blog-text">{{{contents}}}</div>
+                <div class="inline-share">
+                    <strong>Share</strong><a href="{{id}}">this post</a> with your friends/nemeses.
+                </div>
             </div>
-            <div class="blog-text">{{{contents}}}</div>
-            <div class="inline-share">
-                <strong>Share</strong><a href="{{id}}">this post</a> with your friends/nemeses.
+        {{/each}}
+    </script>
+    <script id="weatherCurrentTemplate" type="text/x-handlebars-template">
+        <div class="day">
+            <div class="city">
+                {{name}}
+            </div>
+            <div>
+                {{#weatherImg weather.0.icon}}{{/weatherImg}}
+            </div>
+            <div class="temp-display">
+                <div class="temp">{{#temperature main.temp}}{{/temperature}}</div>
+                <div class="degrees">&deg;</div>
+                <div class="farenheit">F</div>
+            </div>
+            <div class="date">
+                {{#date-weekday dt}}{{/date-weekday}},
+                {{#date-month dt}}{{/date-month}}
+                {{#date-dayOfMonth dt}}{{/date-dayOfMonth}},
+                {{#date-year dt}}{{/date-year}}
             </div>
         </div>
+    </script>
+    <script id="weatherForecastTemplate" type="text/x-handlebars-template">
+        {{#each list}}
+        <div class="day">
+            <div>
+                {{#weatherImg this.weather.0.icon}}{{/weatherImg}}
+            </div>
+            <div class="temp-display">
+                <div class="temp">{{#temperature this.main.temp}}{{/temperature}}</div>
+                <div class="degrees">&deg;</div>
+                <div class="farenheit">F</div>
+            </div>
+            <div class="date">
+                {{#date-weekday this.dt}}{{/date-weekday}},
+                {{#date-month this.dt}}{{/date-month}}
+                {{#date-dayOfMonth this.dt}}{{/date-dayOfMonth}}<br />
+                {{#date-time this.dt}}{{/date-time}}
+            </div>
+        </div>
+        {{/each}}
     </script>
 </body>
 </html>
