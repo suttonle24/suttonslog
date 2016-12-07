@@ -4,7 +4,9 @@
 define(function() {
     var suttonsLog = suttonsLog ? suttonsLog : {};
 
-    suttonsLog.homepage = {};
+    suttonsLog.homepage = {
+        views: {}
+    };
 
     return suttonsLog;
 });
