@@ -1,7 +1,7 @@
 /**
  * Created by leens on 8/30/2016.
  */
-define('hbsHelpers', ['../libs/Handlebars'], function(Handlebars) {
+define(['handlebars'], function(Handlebars) {
     function getDate(dateTime) {
         var date = new Date(dateTime * 1000),
             dateString = date.toString(),

@@ -1,8 +1,9 @@
 /**
  * Created by leens on 8/30/2016.
  */
-define('mocks', ['../libs/jquery', '../libs/mockjax'], function(jQuery) {
-    window.initMocks = function () {
+define('mocks', ['jquery', 'mockjax'], function($) {
+    var mocks = {};
+    mocks.initMocks = function () {
         $.mockjax([
             {
                 url: "http://api.openweathermap.org/data/2.5/weather?id=5802340&APPID=b5928ee8c96cf5f4fac7f4cf6098f831",
@@ -1361,4 +1362,6 @@ define('mocks', ['../libs/jquery', '../libs/mockjax'], function(jQuery) {
             }
         ]);
     };
+
+    return mocks;
 });
