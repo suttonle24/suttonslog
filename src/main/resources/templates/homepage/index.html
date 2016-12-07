@@ -1,0 +1,43 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Sutton's Log</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta property="og:image" content="http://suttonslog.com/images/logo.png"/>
+    <link rel="stylesheet" type="text/css" th:href="@{css/main.css}" />
+    <script data-main="js/homepage/main" th:src="@{js/libs/require.js}"></script>
+</head>
+<body>
+    <input id="mockData" type="hidden" th:value="${mockData}"/>
+    <div class="wrapper">
+        <div th:replace="shared/header"></div>
+            <div class="content">
+                <div class="content-main">
+                    <h2 class="page-head">A blog about nothing in particular...</h2>
+                    <p><strong>...so that means more variety!</strong> The site is in its infancy, but that doesn't mean it can't be useful.</p>
+                    <p>Eyes, hearts, and minds open; here we go...</p>
+                    <div id="blogContainer"></div>
+                </div>
+                <div class="right-rail">
+
+                    <h2>Around the homestead</h2>
+
+                    <h3>Weather</h3>
+                    <div id="weather">
+                        <div class="current"></div>
+                        <div class="forecast">
+                            <div class="list"></div>
+                        </div>
+                    </div>
+
+                    <h3>Police Blotter</h3>
+                    <div id="blotter"></div>
+                </div>
+            </div>
+        <div th:replace="shared/footer"></div>
+    </div>
+    <div th:replace="homepage/views/blogEntries"></div>
+    <div th:replace="homepage/views/currentWeather"></div>
+    <div th:replace="homepage/views/weatherForecast"></div>
+</body>
+</html>
