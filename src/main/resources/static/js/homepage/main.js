@@ -53,20 +53,6 @@ define(['dataHandling', 'namespace', 'jquery', 'handlebars', 'hbsHelpers'], func
             'allBlogs',
             suttonsLog.homepage.allBlogsCallback
         );
-
-        $.ajax({
-            type: 'GET',
-            url: '/getAllBlogs.json',
-            dataType: 'json',
-            success: function (data) {
-                var source   = $("#blogEntriesTemplate").html();
-                var template = Handlebars.compile(source);
-                $('#blogContainer').html(template(data));
-            },
-            error: function (xhr, status) {
-                console.log('Error! - ' + xhr.statusText);
-            }
-        });
     };
 
     suttonsLog.homepage.currentWeatherCallback = function(currentWeather){
