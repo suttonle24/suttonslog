@@ -20,7 +20,7 @@ public class HomepageController {
     @RequestMapping("/")
     public String loadBlogHomepage(@RequestParam(value="mockData", required=false, defaultValue="false") boolean mockData, Model model) {
         model.addAttribute("mockData", mockData);
-        return "index";
+        return "/homepage/index";
     }
 
     @RequestMapping(value="/getLatestBlog.json", method= RequestMethod.GET)

@@ -4,14 +4,14 @@ requirejs.config({
         jquery: 'libs/jquery',
         handlebars: 'libs/Handlebars',
         hbsHelpers: 'homepage/hbsHelpers',
+        mockjax: 'libs/mockjax',
+        mocks: 'homepage/mocks',
         dataHandling: 'dataHandling',
         namespace: 'homepage/namespace',
         currentWeatherView: 'homepage/views/currentWeatherView',
         forecastView: 'homepage/views/forecastView',
         blotterView: 'homepage/views/blotterView',
-        allBlogsView: 'homepage/views/allBlogsView',
-        mockjax: 'libs/mockjax',
-        mocks: 'homepage/mocks'
+        allBlogsView: 'homepage/views/allBlogsView'
     }
 });
 

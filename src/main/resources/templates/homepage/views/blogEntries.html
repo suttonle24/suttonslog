@@ -1,0 +1,15 @@
+<script id="blogEntriesTemplate" type="text/x-handlebars-template">
+    {{#each this}}
+    <div id="{{id}}" class="entry">
+        <h2 class="{{author}}">{{title}}</h2>
+        <div class="date">
+            <div class="day">{{blogDate.day}}</div>
+            <div class="month-year">{{blogDate.month}}<br />{{blogDate.year}}</div>
+        </div>
+        <div class="blog-text">{{{contents}}}</div>
+        <div class="inline-share">
+            <strong>Share</strong><a href="{{id}}">this post</a> with your friends/nemeses.
+        </div>
+    </div>
+    {{/each}}
+</script>

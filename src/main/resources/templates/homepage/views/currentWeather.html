@@ -1,0 +1,21 @@
+<script id="weatherCurrentTemplate" type="text/x-handlebars-template">
+    <div class="day">
+        <div class="city">
+            {{name}}
+        </div>
+        <div>
+            {{#weatherImg weather.0.icon}}{{/weatherImg}}
+        </div>
+        <div class="temp-display">
+            <div class="temp">{{#temperature main.temp}}{{/temperature}}</div>
+            <div class="degrees">&deg;</div>
+            <div class="farenheit">F</div>
+        </div>
+        <div class="date">
+            {{#date-weekday dt}}{{/date-weekday}},
+            {{#date-month dt}}{{/date-month}}
+            {{#date-dayOfMonth dt}}{{/date-dayOfMonth}},
+            {{#date-year dt}}{{/date-year}}
+        </div>
+    </div>
+</script>
