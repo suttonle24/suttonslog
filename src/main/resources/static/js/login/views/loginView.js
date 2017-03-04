@@ -6,7 +6,14 @@ define(['namespace', 'jquery', 'handlebars', 'hbsHelpers'], function(suttonsLog,
         if(login){
             var source   = $("#loginTemplate").html();
             var template = Handlebars.compile(source);
-            $('#loginView').html(template(login));
+            $('#loginView').addClass('complete').html(template(login));
+
+            setTimeout(function(){
+                $('#redirectMsg').show();
+                if(!login.data) {
+                    $('#submit').removeAttr('disabled');
+                }
+            }, 750);
         }
         else {
             console.log('Error! - ' + allBlogs.xhr.statusText);

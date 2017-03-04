@@ -1,3 +1,8 @@
 <script id="loginTemplate" type="text/x-handlebars-template">
-    <h2>Welcome, {{data.name}}!</h2>
+    {{#if data}}
+        <h2>Welcome, {{data.name}}!</h2>
+        <p id="redirectMsg">Redirecting...</p>
+    {{else}}
+        <p>Authentication failed.</p>
+    {{/if}}
 </script>

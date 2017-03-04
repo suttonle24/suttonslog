@@ -18,7 +18,13 @@ requirejs.config({
 define(['dataHandling', 'namespace', 'jquery', 'handlebars', 'hbsHelpers', 'loginView'], function(dataHandling, suttonsLog, $, Handlebars) {
 
     $('#submit').on('click', function(){
-        console.log('hello!');
+        submitLogin($(this));
+    });
+
+    submitLogin = function($submitBtn) {
+        $submitBtn.attr('disabled', 'disabled');
+        $('#loginView').removeClass('complete').show().html("<div class='spinner'></div>");
+        $('#redirectMsg').hide();
         var login = dataHandling.sendData(
             'post',
             '/authenticate.json',
@@ -26,6 +32,6 @@ define(['dataHandling', 'namespace', 'jquery', 'handlebars', 'hbsHelpers', 'logi
             'login',
             suttonsLog.login.views.loginView
         );
-    });
+    }
 
 });
