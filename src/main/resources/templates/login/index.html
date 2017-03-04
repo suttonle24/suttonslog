@@ -5,13 +5,19 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta property="og:image" content="http://suttonslog.com/images/logo.png"/>
     <link rel="stylesheet" type="text/css" th:href="@{../css/main.css}" />
-    <script data-main="js/login/main" th:src="@{../js/libs/require.js}"></script>
+    <script data-main="../js/login/main" th:src="@{../js/libs/require.js}"></script>
 </head>
-<body>
-<h1>Blog Editor</h1>
-<input type="text" placeholder="Email address" id="email" />
-<input type="text" placeholder="Password" id="password" />
+<body id="login">
+<h1>Login</h1>
+<form id="loginForm">
+    <input id="email" name="email" type="text" placeholder="Email address" />
+    <input id="password" name="password" type="password" placeholder="Password" />
+</form>
 <input type="button" id="submit" value="Submit" />
+
+<div id="loginView"></div>
+
+<div th:replace="login/views/login"></div>
 
 </body>
 </html>
