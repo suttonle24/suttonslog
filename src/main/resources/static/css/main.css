@@ -502,6 +502,11 @@ input.submit {
     margin-top: 0;
 }
 
+.g-recaptcha {
+    display: inline-block;
+    margin: 0 auto;
+}
+
 /****** Admin Panel ******/
 .admin-panel {
     position: absolute;

@@ -35,8 +35,18 @@ define(['jquery'], function($) {
         });
     };
 
+    String.prototype.replaceAll = function(search, replacement) {
+        var target = this;
+        return target.replace(new RegExp(search, 'g'), replacement);
+    };
+
     dataHandling.sendData = function(type, url, data, flag, callback){
         var response = {};
+
+        data.forEach(function(item, index){
+            item.name = item.name.replaceAll('-', '');
+        });
+
         $.ajax({
             type: type,
             url: url,
