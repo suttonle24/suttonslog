@@ -13,6 +13,11 @@ define(['namespace', 'jquery', 'handlebars', 'hbsHelpers'], function(suttonsLog,
                 if(!login.data) {
                     $('#submit').removeAttr('disabled');
                 }
+                else {
+                    setTimeout(function(){
+                        window.location.href = '/admin/create';
+                    },500);
+                }
             }, 750);
         }
         else {

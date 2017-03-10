@@ -5,6 +5,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta property="og:image" content="http://suttonslog.com/images/logo.png"/>
     <link rel="stylesheet" type="text/css" th:href="@{../css/main.css}" />
+    <script src='https://www.google.com/recaptcha/api.js'></script>
     <script data-main="../js/login/main" th:src="@{../js/libs/require.js}"></script>
 </head>
 <body id="login">
@@ -12,6 +13,7 @@
 <form id="loginForm">
     <input id="email" name="email" type="text" placeholder="Email address" />
     <input id="password" name="password" type="password" placeholder="Password" />
+    <div class="g-recaptcha" data-sitekey="6LcnohcUAAAAAD-3TjgkTbPD5radwRXMzJlYTEZn"></div>
 </form>
 <input type="button" id="submit" value="Submit" />
 
