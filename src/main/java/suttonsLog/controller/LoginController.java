@@ -1,5 +1,6 @@
 package suttonsLog.controller;
 
+import org.springframework.boot.autoconfigure.web.ServerProperties;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,12 +14,15 @@ import suttonsLog.domain.service.impl.AuthService;
 import suttonsLog.domain.service.impl.RecaptchaService;
 
 import javax.json.JsonObject;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * Created by leens on 12/9/2016.
  */
 @Controller
-public class LoginController {
+public class LoginController extends HttpServlet {
 
         @RequestMapping("/admin/login")
         public String loadLoginPage(Model model) {
@@ -34,7 +38,7 @@ public class LoginController {
 
     @RequestMapping(value="/authenticate.json", method= RequestMethod.POST)
     public @ResponseBody
-    AuthInfo authenticate(AuthRequest authRequest) {
+    AuthInfo authenticate(AuthRequest authRequest, HttpServletRequest request) {
         try {
             IAuthService authService = new AuthService();
             IRecaptchaService recaptchaService = new RecaptchaService();
@@ -42,12 +46,18 @@ public class LoginController {
             JsonObject captchaResponse = recaptchaService.validateCaptcha(System.getenv("RECAPTCHA_SECRET_KEY"), authRequest.getGrecaptcharesponse(), null);
 
             if(captchaResponse.getBoolean("success")){
-                return authService.getAuthentication(authRequest.getEmail(), authRequest.getPassword());
+                AuthInfo authInfo = authService.getAuthentication(authRequest.getEmail(), authRequest.getPassword());
+                if(authInfo.getName() != null) {
+                    request.getSession().setAttribute("userName", authInfo.getName());
+                    return authInfo;
+                }
+                else {
+                    return null;
+                }
             }
             else {
                 return null;
             }
-
         }
         catch (Exception ex) {
             return null;
