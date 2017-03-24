@@ -18,8 +18,7 @@ public class CreateBlogController {
                 return "/create/index";
             }
             else {
-                System.out.println("Not authorized!");
-                return "/create/index";
+                return "/create/forbidden";
             }
         }
         catch (Exception ex) {
