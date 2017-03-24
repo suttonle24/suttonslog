@@ -5,10 +5,84 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta property="og:image" content="http://suttonslog.com/images/logo.png"/>
     <link rel="stylesheet" type="text/css" th:href="@{../css/main.css}" />
-    <script data-main="js/create/main" th:src="@{../js/libs/require.js}"></script>
+    <script data-main="../js/create/main" th:src="@{../js/libs/require.js}"></script>
 </head>
 <body>
-<h1>Blog Editor</h1>
+<div class="wrapper">
+    <h1>Sutton's Log</h1>
+    <div class="logo"><img src="../images/logo.png" alt="Sutton's Log" /></div>
+    <div class="admin-panel">
+        <h2>Administration panel</h2>
+        <a href="./">Home</a>
+        <a href="/admin/create">New Post</a>
+        <a href="/admin/create">Update Post</a>
+    </div>
+    <div class="content">
+        <form action="../phpCommands/submit.php" method="post">
+            <h2 class="page-head">Add a new entry . . .</h2>
+            <ul id="blog-submit">
+                <li>
+                    <label for="lee">Who's posting?</label>
+                    <ul>
+                        <li>
+                            <label for="lee">
+                                <input type="radio" name="author" id="lee" checked="checked" value="him" />
+                                Lee
+                            </label>
+                        </li>
+                        <li>
+                            <label for="whit">
+                                <input type="radio" name="author" id="whit" value="her" />
+                                Whitney
+                            </label>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <label for="title">Title</label><br />
+                    <input name="title" type="text" id="title" />
+                </li>
+                <li>
+                    <label for="category">Category</label><br />
+                    <select name="category" id="category">
+                        <option>Faith</option>
+                        <option>Family</option>
+                        <option>Fun</option>
+                        <option>Food</option>
+                        <option>Outside</option>
+                        <option>Photography</option>
+                        <option>Web Development</option>
+                    </select>
+                </li>
+                <li>
+                    <label for="contents">Contents</label><br />
+                    <span class="warning-text">Before inserting any images, be sure to see the instructions below about uploading and inserting your images.</span>
+                    <textarea name="contents" id="contents" rows="4" cols="50"></textarea>
+                </li>
+                <li>
+                    <input class="submit" name="submit" type="submit" value="Submit blog entry" title="Submit blog entry" />
+                </li>
+            </ul>
+        </form>
+        <form id="upload" method="post" action="../phpCommands/upload.php" enctype="multipart/form-data">
+            <div id="drop">
+                Drop Here
 
+                <a>Browse</a>
+                <!--<input type="file" name="upl" multiple />-->
+            </div>
+
+            <ul>
+                <!-- The file uploads will be shown here -->
+            </ul>
+        </form>
+        <ol class="upload-instructions">
+            <strong>Uploading and inserting images...</strong>
+            <li>Drag and drop your image into the box to the left, or click browse to select your images.<br />(You can upload multiple images at once)</li>
+            <li>Insert an image into your post with one of two methods: You can click <strong>'Insert image'</strong> inside of the <strong>'Insert'</strong> dropdown. You can also click on the <strong>'Insert/edit image'</strong> button on the far-right of the text editor.</li>
+            <li>When you insert an image, a dialog box will pop up.  It is important that the <strong>Source</strong> field looks like this: http://www.suttonslog.com/images/blogPhotos/<strong>YOUR_IMAGE_HERE</strong>.  So, if you uploaded an image called <strong>house.jpg</strong> the source field should look like this: http://www.suttonslog.com/images/blogPhotos/<strong>house.jpg</strong>.</li>
+        </ol>
+    </div>
+</div>
 </body>
 </html>
