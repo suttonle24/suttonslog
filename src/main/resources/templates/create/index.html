@@ -5,7 +5,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta property="og:image" content="http://suttonslog.com/images/logo.png"/>
     <link rel="stylesheet" type="text/css" th:href="@{../css/main.css}" />
-    <script data-main="../js/create/main" th:src="@{../js/libs/require.js}"></script>
+    <link rel="stylesheet" type="text/css" th:href="@{../css/uploader.css}" />
 </head>
 <body>
 <div class="wrapper">
@@ -64,17 +64,27 @@
                 </li>
             </ul>
         </form>
-        <form id="upload" method="post" action="../phpCommands/upload.php" enctype="multipart/form-data">
-            <div id="drop">
-                Drop Here
-
-                <a>Browse</a>
-                <!--<input type="file" name="upl" multiple />-->
+        <form class="box" action="/uploadPhotos/?" enctype="multipart/form-data" method="post"
+              novalidate="">
+            <div class="box__input">
+                <svg xmlns="http://www.w3.org/2000/svg" class="box__icon" viewBox="0 0 50 43" width="50" height="43">
+                    <path d="M 48.4 26.5 c -0.9 0 -1.7 0.7 -1.7 1.7 v 11.6 h -43.3 v -11.6 c 0 -0.9 -0.7 -1.7 -1.7 -1.7 s -1.7 0.7 -1.7 1.7 v 13.2 c 0 0.9 0.7 1.7 1.7 1.7 h 46.7 c 0.9 0 1.7 -0.7 1.7 -1.7 v -13.2 c 0 -1 -0.7 -1.7 -1.7 -1.7 Z m -24.5 6.1 c 0.3 0.3 0.8 0.5 1.2 0.5 c 0.4 0 0.9 -0.2 1.2 -0.5 l 10 -11.6 c 0.7 -0.7 0.7 -1.7 0 -2.4 s -1.7 -0.7 -2.4 0 l -7.1 8.3 v -25.3 c 0 -0.9 -0.7 -1.7 -1.7 -1.7 s -1.7 0.7 -1.7 1.7 v 25.3 l -7.1 -8.3 c -0.7 -0.7 -1.7 -0.7 -2.4 0 s -0.7 1.7 0 2.4 l 10 11.6 Z"
+                    />
+                </svg>
+                <input name="files[]" class="box__file" id="file" type="file" multiple="" data-multiple-caption="{count} files selected" />
+                <label for="file">
+                    <strong>Choose a file</strong> <span class="box__dragndrop"> or drag it here</span>.
+                </label>
+                <button class="box__button" type="submit">Upload</button>
             </div>
-
-            <ul>
-                <!-- The file uploads will be shown here -->
-            </ul>
+            <div class="box__uploading">Uploading…</div>
+            <div class="box__success">Done!
+                <a class="box__restart" role="button" href="https://css-tricks.com/examples/DragAndDropFileUploading//?">Upload more?</a>
+            </div>
+            <div class="box__error">Error!
+                <span></span>.
+                <a class="box__restart" role="button" href="https://css-tricks.com/examples/DragAndDropFileUploading//?">Try again!</a>
+            </div>
         </form>
         <ol class="upload-instructions">
             <strong>Uploading and inserting images...</strong>
@@ -84,5 +94,6 @@
         </ol>
     </div>
 </div>
+<script data-main="../js/create/main" th:src="@{../js/libs/require.js}"></script>
 </body>
 </html>
