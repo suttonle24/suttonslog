@@ -35,6 +35,8 @@ dependencies {
     compile 'com.stormpath.sdk:stormpath-sdk-httpclient:1.2.2'
     compile 'com.fasterxml.jackson.core:jackson-core:2.8.7'
     compile 'org.glassfish:javax.json:1.0.4'
+    compile 'com.fasterxml.jackson.core:jackson-core:2.4.3'
+    compile 'com.fasterxml.jackson.core:jackson-databind:2.4.3'
     runtime 'mysql:mysql-connector-java:5.1.35'
     testCompile 'junit:junit'
 }
