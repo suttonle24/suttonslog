@@ -10,7 +10,7 @@ import suttonsLog.model.PhotoUploadResponse;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.Part;
-import java.io.InputStream;
+import java.io.File;
 import java.nio.file.Paths;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -40,13 +40,16 @@ public class CreateBlogController extends HttpServlet {
     public @ResponseBody
     PhotoUploadResponse uploadPhotos(HttpServletRequest request){
         try {
+            // TODO - migrate to service.
+            String slash = System.getProperty("file.separator");
+            String path = new File(".").getCanonicalPath() + slash + "blogPhotos" + slash;
             List<Part> fileParts = request.getParts().stream().filter(part -> "files[]".equals(part.getName())).collect(Collectors.toList()); // Retrieves <input type="file" name="file" multiple="true">
             String response = "";
             for (Part filePart : fileParts) {
                 String fileName = Paths.get(filePart.getSubmittedFileName()).getFileName().toString(); // MSIE fix.
-                InputStream fileContent = filePart.getInputStream();
 
                 if(fileName.length() > 0){
+                    filePart.write(path + fileName);
                     response += ", " + fileName;
                 }
             }
