@@ -30,6 +30,7 @@ dependencies {
     compile 'org.springframework.boot:spring-boot-devtools:1.4.0.RELEASE'
     compile 'org.springframework:spring-web:4.3.4.RELEASE'
     compile 'org.springframework.session:spring-session-data-redis:1.3.0.RELEASE'
+    compile 'org.apache.commons:commons-lang3:3.5'
     compile 'biz.paluch.redis:lettuce:3.5.0.Final'
     compile 'com.stormpath.sdk:stormpath-sdk-api:1.2.2'
     compile 'com.stormpath.sdk:stormpath-sdk-httpclient:1.2.2'
