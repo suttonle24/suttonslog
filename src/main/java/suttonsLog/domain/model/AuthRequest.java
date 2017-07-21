@@ -1,30 +1,28 @@
 package suttonsLog.domain.model;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-
 /**
  * Created by leens on 3/3/2017.
  */
 
 public class AuthRequest {
-    private String email;
+    private String username;
     private String password;
     private String grecaptcharesponse;
 
     public AuthRequest() {}
 
-    public AuthRequest(String email, String password, String grecaptcharesponse) {
-        this.email = email;
+    public AuthRequest(String username, String password, String grecaptcharesponse) {
+        this.username = username;
         this.password = password;
         this.grecaptcharesponse = grecaptcharesponse;
     }
 
-    public String getEmail() {
-        return email;
+    public String getUsername() {
+        return username;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getPassword() {

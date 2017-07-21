@@ -1,13 +1,8 @@
 package suttonsLog.domain.service.impl;
 
-import com.stormpath.sdk.api.ApiKey;
-import com.stormpath.sdk.api.ApiKeys;
-import com.stormpath.sdk.application.Application;
-import com.stormpath.sdk.authc.AuthenticationRequest;
-import com.stormpath.sdk.authc.AuthenticationResult;
-import com.stormpath.sdk.authc.UsernamePasswordRequests;
-import com.stormpath.sdk.client.Client;
-import com.stormpath.sdk.client.Clients;
+import com.mongodb.*;
+import domain.model.dbo.UserDbo;
+import org.mongojack.JacksonDBCollection;
 import suttonsLog.domain.mapper.AuthMapper;
 import suttonsLog.domain.model.AuthInfo;
 import suttonsLog.domain.service.IAuthService;
@@ -16,21 +11,36 @@ import suttonsLog.domain.service.IAuthService;
  * Created by leens on 3/3/2017.
  */
 public class AuthService implements IAuthService {
-    public AuthInfo getAuthentication(String email, String password){
+    public AuthInfo getAuthentication(String username, String password){
         AuthMapper authMapper = new AuthMapper();
 
-        ApiKey apiKey = ApiKeys.builder().setFileLocation(System.getenv("STORMPATH_API_KEY")).build();
+        try {
+            MongoClient mongoClient = new MongoClient("192.168.1.199", 32768);
+            DB db = mongoClient.getDB("local");
+            DBCollection collection = db.getCollection("users");
+            JacksonDBCollection<UserDbo, String> users = JacksonDBCollection.wrap(collection, UserDbo.class, String.class);
 
-        Client client = Clients.builder().setApiKey(apiKey).setBaseUrl(System.getenv("STORMPATH_BASE_URL")).build();
-        Application application = client.getResource(System.getenv("STORMPATH_APPLICATION_HREF"), Application.class);
+            BasicDBObject query = new BasicDBObject();
+            query.put("username", username);
 
-        AuthenticationRequest request = UsernamePasswordRequests.builder()
-                .setUsernameOrEmail(email)
-                .setPassword(password)
-                .build();
+            UserDbo user = users.findOne(query);
 
-        AuthenticationResult authenticationResult = application.authenticateAccount(request);
-
-        return authMapper.MapAuthResponse(authenticationResult);
+            if(user != null) {
+                if(user.getPassword().equals(password)){
+                    System.out.print("Yay!");
+                    return authMapper.MapAuthResponse(user);
+                }
+                else {
+                    System.out.print("Boo!");
+                    return authMapper.MapAuthResponse(new UserDbo());
+                }
+            }
+            else {
+                return authMapper.MapAuthResponse(new UserDbo());
+            }
+        }
+        catch (Exception e) {
+            return authMapper.MapAuthResponse(new UserDbo());
+        }
     }
 }

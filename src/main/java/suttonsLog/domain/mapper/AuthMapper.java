@@ -1,18 +1,18 @@
 package suttonsLog.domain.mapper;
 
-import com.stormpath.sdk.authc.AuthenticationResult;
+import domain.model.dbo.UserDbo;
 import suttonsLog.domain.model.AuthInfo;
 
 /**
  * Created by leens on 3/3/2017.
  */
 public class AuthMapper {
-    public AuthInfo MapAuthResponse(AuthenticationResult authenticationResult){
+    public AuthInfo MapAuthResponse(UserDbo user){
         AuthInfo authInfo = new AuthInfo();
 
         try {
-            authInfo.setEmail(authenticationResult.getAccount().getEmail());
-            authInfo.setName(authenticationResult.getAccount().getFullName());
+            authInfo.setEmail(user.getEmail());
+            authInfo.setName(user.getName().getFirstName() + ' ' + user.getName().getLastName());
 
             return authInfo;
         }

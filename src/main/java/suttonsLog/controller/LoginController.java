@@ -1,6 +1,5 @@
 package suttonsLog.controller;
 
-import org.springframework.boot.autoconfigure.web.ServerProperties;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,7 +13,6 @@ import suttonsLog.domain.service.impl.AuthService;
 import suttonsLog.domain.service.impl.RecaptchaService;
 
 import javax.json.JsonObject;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 
@@ -46,7 +44,7 @@ public class LoginController extends HttpServlet {
             JsonObject captchaResponse = recaptchaService.validateCaptcha(System.getenv("RECAPTCHA_SECRET_KEY"), authRequest.getGrecaptcharesponse(), null);
 
             if(captchaResponse.getBoolean("success")){
-                AuthInfo authInfo = authService.getAuthentication(authRequest.getEmail(), authRequest.getPassword());
+                AuthInfo authInfo = authService.getAuthentication(authRequest.getUsername(), authRequest.getPassword());
                 if(authInfo.getName() != null) {
                     request.getSession().setAttribute("userName", authInfo.getName());
                     return authInfo;
