@@ -5,6 +5,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import suttonsLog.domain.model.BlogEntry;
+import suttonsLog.domain.service.impl.BlogService;
+import suttonsLog.model.BlogSubmissionResponse;
 import suttonsLog.model.PhotoUploadResponse;
 
 import javax.servlet.http.HttpServlet;
@@ -34,6 +37,17 @@ public class CreateBlogController extends HttpServlet {
             System.out.println(ex.getMessage());
             return "/create/index";
         }
+    }
+
+    @RequestMapping(value="/submitPost.json", method= RequestMethod.POST)
+    public @ResponseBody
+    BlogSubmissionResponse submitBlogPost(BlogEntry blogEntry) {
+        BlogService blogService = new BlogService();
+
+        blogService.createBlogEntry(blogEntry);
+
+
+        return new BlogSubmissionResponse(true);
     }
 
     @RequestMapping(value = "/uploadPhotos", method = RequestMethod.POST)

@@ -2,6 +2,7 @@ package suttonsLog.domain.service.impl;
 
 import suttonsLog.domain.connector.BlogEntryConnector;
 import suttonsLog.domain.model.BlogEntry;
+import suttonsLog.domain.model.BlogEntryCreateResponse;
 import suttonsLog.domain.service.IBlogService;
 
 import java.util.List;
@@ -11,6 +12,15 @@ import java.util.List;
  */
 public class BlogService implements IBlogService {
     private BlogEntryConnector blogEntryConnector = new BlogEntryConnector();
+
+    public BlogEntryCreateResponse createBlogEntry(BlogEntry blogEntry){
+        try {
+            return blogEntryConnector.createBlogEntry();
+        }
+        catch(Exception e) {
+            return new BlogEntryCreateResponse(false);
+        }
+    }
 
     public BlogEntry getLatestBlogEntry(){
         try{
