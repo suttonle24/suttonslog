@@ -5,6 +5,7 @@ import domain.model.dbo.UserDbo;
 import org.mongojack.JacksonDBCollection;
 import suttonsLog.domain.mapper.AuthMapper;
 import suttonsLog.domain.model.AuthInfo;
+import suttonsLog.domain.model.User;
 import suttonsLog.domain.service.IAuthService;
 
 /**
@@ -13,17 +14,10 @@ import suttonsLog.domain.service.IAuthService;
 public class AuthService implements IAuthService {
     public AuthInfo getAuthentication(String username, String password){
         AuthMapper authMapper = new AuthMapper();
+        UserService userService = new UserService();
 
         try {
-            MongoClient mongoClient = new MongoClient("192.168.1.199", 32768);
-            DB db = mongoClient.getDB("local");
-            DBCollection collection = db.getCollection("users");
-            JacksonDBCollection<UserDbo, String> users = JacksonDBCollection.wrap(collection, UserDbo.class, String.class);
-
-            BasicDBObject query = new BasicDBObject();
-            query.put("username", username);
-
-            UserDbo user = users.findOne(query);
+            User user = userService.getUser(username);
 
             if(user != null) {
                 if(user.getPassword().equals(password)){
@@ -32,15 +26,15 @@ public class AuthService implements IAuthService {
                 }
                 else {
                     System.out.print("Boo!");
-                    return authMapper.MapAuthResponse(new UserDbo());
+                    return authMapper.MapAuthResponse(new User());
                 }
             }
             else {
-                return authMapper.MapAuthResponse(new UserDbo());
+                return authMapper.MapAuthResponse(new User());
             }
         }
         catch (Exception e) {
-            return authMapper.MapAuthResponse(new UserDbo());
+            return authMapper.MapAuthResponse(new User());
         }
     }
 }

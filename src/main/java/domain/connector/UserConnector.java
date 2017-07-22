@@ -9,7 +9,7 @@ import org.mongojack.JacksonDBCollection;
 
 public class UserConnector {
     private final String IP = "192.168.1.199";
-    private final int PORT = 32768;
+    private final int PORT = 27017;
     private final String DATABASE = "local";
     private final String COLLECTION = "users";
 

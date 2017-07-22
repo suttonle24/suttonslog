@@ -19,8 +19,8 @@ public class BlogEntryResponseMapper {
         try{
             blogEntry.setId(blogEntryResponse.getBlogEntryDbo().getId());
             blogEntry.setTitle(blogEntryResponse.getBlogEntryDbo().getTitle());
-            blogEntry.setBlogDate(dateMapper.mapBlogDate(blogEntryResponse.getBlogEntryDbo().getDatecreated()));
-            blogEntry.setCategory(blogEntryResponse.getBlogEntryDbo().getCategory());
+            //blogEntry.setBlogDate(dateMapper.mapBlogDate(blogEntryResponse.getBlogEntryDbo().getDatecreated()));
+            //blogEntry.setCategory(blogEntryResponse.getBlogEntryDbo().getCategory());
             blogEntry.setAuthor(blogEntryResponse.getBlogEntryDbo().getAuthor());
             blogEntry.setContents(blogEntryResponse.getBlogEntryDbo().getContents());
         }
@@ -44,8 +44,8 @@ public class BlogEntryResponseMapper {
 
                 blogEntry.setId(blogEntryDbo.getId());
                 blogEntry.setTitle(blogEntryDbo.getTitle());
-                blogEntry.setBlogDate(dateMapper.mapBlogDate(blogEntryDbo.getDatecreated()));
-                blogEntry.setCategory(blogEntryDbo.getCategory());
+                //blogEntry.setBlogDate(dateMapper.mapBlogDate(blogEntryDbo.getDatecreated()));
+                //blogEntry.setCategory(blogEntryDbo.getCategory());
                 blogEntry.setAuthor(blogEntryDbo.getAuthor());
                 blogEntry.setContents(blogEntryDbo.getContents());
 
