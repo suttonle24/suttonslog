@@ -10,15 +10,11 @@ import java.util.Date;
  * Created by leens on 8/13/2016.
  */
 public class DateMapper {
-    public BlogDate mapBlogDate(java.sql.Timestamp datecreated){
+    public BlogDate mapBlogDate(Date datecreated){
         BlogDate blogDate = new BlogDate();
 
-        long milliseconds = datecreated.getTime() + (datecreated.getNanos() / 1000000);
-        Date date = new Date(milliseconds);
-
         Format formatter = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
-        String dateString = formatter.format(date);
-
+        String dateString = formatter.format(datecreated);
 
         String day = dateString.substring(3, 5);
         String month = dateString.substring(0, 2);

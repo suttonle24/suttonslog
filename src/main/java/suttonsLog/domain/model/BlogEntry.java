@@ -1,17 +1,19 @@
 package suttonsLog.domain.model;
 
+import domain.model.valueObject.Category;
+
 public class BlogEntry {
   private Long id;
   private String title;
   private BlogDate blogDate;
-  private String category;
+  private Category category;
   private String author;
   private String contents;
 
   public BlogEntry(){}
 
   public BlogEntry(Long id, String title, BlogDate blogDate,
-            String category, String author, String contents){
+            Category category, String author, String contents){
       this.id = id;
       this.title = title;
       this.blogDate = blogDate;
@@ -44,11 +46,11 @@ public class BlogEntry {
     this.blogDate = blogDate;
   }
 
-  public String getCategory() {
+  public Category getCategory() {
     return category;
   }
 
-  public void setCategory(String category) {
+  public void setCategory(Category category) {
     this.category = category;
   }
 
