@@ -1,20 +1,26 @@
 package suttonsLog.domain.model;
 
-/**
- * Created by leens on 3/3/2017.
- */
-
-public class AuthRequest {
+public class User {
+    private String email;
     private String username;
     private String password;
-    private String grecaptcharesponse;
+    private FullName name;
 
-    public AuthRequest() {}
+    public User(){}
 
-    public AuthRequest(String username, String password, String grecaptcharesponse) {
+    public User(String email, String username, String password, FullName name) {
+        this.email = email;
         this.username = username;
         this.password = password;
-        this.grecaptcharesponse = grecaptcharesponse;
+        this.name = name;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getUsername() {
@@ -33,11 +39,11 @@ public class AuthRequest {
         this.password = password;
     }
 
-    public String getGrecaptcharesponse() {
-        return grecaptcharesponse;
+    public FullName getName() {
+        return name;
     }
 
-    public void setGrecaptcharesponse(String grecaptcharesponse) {
-        this.grecaptcharesponse = grecaptcharesponse;
+    public void setName(FullName name) {
+        this.name = name;
     }
 }

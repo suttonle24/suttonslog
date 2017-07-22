@@ -17,7 +17,7 @@ public class BlogEntryResponseMapper {
             blogEntryDbo.setId(queryResult.getLong("id"));
             blogEntryDbo.setTitle(queryResult.getString("title"));
             blogEntryDbo.setDatecreated(queryResult.getTimestamp("dateCreated"));
-            blogEntryDbo.setCategory(queryResult.getString("category"));
+            //blogEntryDbo.setCategory(queryResult.getString("category"));
             blogEntryDbo.setAuthor(queryResult.getString("author"));
             blogEntryDbo.setContents(queryResult.getString("contents"));
         }

@@ -1,17 +1,21 @@
 package domain.model.dbo;
 
+import domain.model.valueObject.Category;
+
+import java.util.Date;
+
 public class BlogEntryDbo {
   private Long id;
   private String title;
-  private java.sql.Timestamp datecreated;
-  private String category;
+  private Date datecreated;
+  private Category category;
   private String author;
   private String contents;
 
   public BlogEntryDbo(){}
 
   public BlogEntryDbo(Long id, String title, java.sql.Timestamp datecreated,
-                      String category, String author, String contents){
+                      Category category, String author, String contents){
       this.id = id;
       this.title = title;
       this.datecreated = datecreated;
@@ -36,19 +40,19 @@ public class BlogEntryDbo {
     this.title = title;
   }
 
-  public java.sql.Timestamp getDatecreated() {
+  public Date getDatecreated() {
     return datecreated;
   }
 
-  public void setDatecreated(java.sql.Timestamp datecreated) {
+  public void setDatecreated(Date datecreated) {
     this.datecreated = datecreated;
   }
 
-  public String getCategory() {
+  public Category getCategory() {
     return category;
   }
 
-  public void setCategory(String category) {
+  public void setCategory(Category category) {
     this.category = category;
   }
 

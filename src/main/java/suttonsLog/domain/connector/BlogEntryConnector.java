@@ -4,6 +4,7 @@ import domain.model.response.BlogEntryResponse;
 import domain.service.impl.BlogEntryService;
 import suttonsLog.domain.mapper.BlogEntryResponseMapper;
 import suttonsLog.domain.model.BlogEntry;
+import suttonsLog.domain.model.BlogEntryCreateResponse;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -14,6 +15,11 @@ import java.util.List;
 public class BlogEntryConnector {
     BlogEntryService blogEntryService = new BlogEntryService();
     BlogEntryResponseMapper blogEntryResponseMapper = new BlogEntryResponseMapper();
+
+    public BlogEntryCreateResponse createBlogEntry() {
+
+        return new BlogEntryCreateResponse(true);
+    }
 
     public BlogEntry getLatestBlogEntry() {
         BlogEntry blogEntry = null;
