@@ -21,6 +21,10 @@ public class BlogDate {
         this.time = time;
     }
 
+    public String getDateString(){
+        return this.day + " " + this.month +  " " + this.year + " " + this.time;
+    }
+
     public String getDay() {
         return day;
     }

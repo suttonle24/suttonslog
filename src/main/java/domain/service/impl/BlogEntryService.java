@@ -28,4 +28,19 @@ public class BlogEntryService implements IBlogEntryService {
 
         return new BlogEntryResponse(allBlogEntries, null, null);
     }
+
+    public BlogEntryResponse createBlogEntry(BlogEntryDbo blogEntryDbo){
+        BlogEntryConnector connector = new BlogEntryConnector();
+        BlogEntryResponse response = new BlogEntryResponse();
+
+        boolean createSuccess = connector.createBlogEntry(blogEntryDbo);
+
+        response.setSuccessful(createSuccess);
+
+        if(!createSuccess){
+            response.setErrorMessage("Save failed.");
+        }
+
+        return response;
+    }
 }

@@ -10,6 +10,8 @@ public class BlogEntryResponse {
   private Boolean successful;
   private String errorMessage;
 
+    public BlogEntryResponse(){}
+
   public BlogEntryResponse(BlogEntryDbo blogEntryDbo){
     this.blogEntryDbo = blogEntryDbo;
   }
@@ -46,4 +48,20 @@ public class BlogEntryResponse {
   public String getErrorMessage() {
     return errorMessage;
   }
+
+    public void setBlogEntryDbo(BlogEntryDbo blogEntryDbo) {
+        this.blogEntryDbo = blogEntryDbo;
+    }
+
+    public void setBlogEntries(List<BlogEntryDbo> blogEntries) {
+        this.blogEntries = blogEntries;
+    }
+
+    public void setSuccessful(Boolean successful) {
+        this.successful = successful;
+    }
+
+    public void setErrorMessage(String errorMessage) {
+        this.errorMessage = errorMessage;
+    }
 }

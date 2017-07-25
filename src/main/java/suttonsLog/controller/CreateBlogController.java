@@ -44,10 +44,10 @@ public class CreateBlogController extends HttpServlet {
     BlogSubmissionResponse submitBlogPost(BlogEntry blogEntry) {
         BlogService blogService = new BlogService();
 
-        blogService.createBlogEntry(blogEntry);
+        boolean response = blogService.createBlogEntry(blogEntry);
 
 
-        return new BlogSubmissionResponse(true);
+        return new BlogSubmissionResponse(response);
     }
 
     @RequestMapping(value = "/uploadPhotos", method = RequestMethod.POST)

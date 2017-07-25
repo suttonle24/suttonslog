@@ -1,7 +1,13 @@
 package domain.connector;
 
+import com.mongodb.BasicDBObject;
+import com.mongodb.DB;
+import com.mongodb.DBCollection;
+import com.mongodb.MongoClient;
 import domain.mapper.BlogEntryResponseMapper;
 import domain.model.dbo.BlogEntryDbo;
+import org.mongojack.JacksonDBCollection;
+import org.mongojack.WriteResult;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.sql.*;
@@ -16,6 +22,12 @@ public class BlogEntryConnector {
     private final String URL = System.getenv("suttonsLogQa");
     private final String USERNAME = System.getenv("suttonsLogUsername");
     private final String PASSWORD = System.getenv("suttonsLogPw");
+
+
+    private final String IP = "192.168.1.199";
+    private final int PORT = 27017;
+    private final String DATABASE = "local";
+    private final String COLLECTION = "blogs";
 
     BlogEntryResponseMapper blogEntryResponseMapper = new BlogEntryResponseMapper();
 
@@ -97,5 +109,29 @@ public class BlogEntryConnector {
         return makeBlogRequest(sqlStatement);
     }
 
+    public boolean createBlogEntry(BlogEntryDbo blogEntryDbo){
+        try {
+
+            MongoClient mongoClient = new MongoClient(IP, PORT);
+            DB db = mongoClient.getDB(DATABASE);
+            DBCollection collection = db.getCollection(COLLECTION);
+            JacksonDBCollection<BlogEntryDbo, String> blogs = JacksonDBCollection.wrap(collection, BlogEntryDbo.class, String.class);
+
+            BasicDBObject query = new BasicDBObject();
+
+            WriteResult result = blogs.insert(blogEntryDbo);
+
+            if(result.getSavedObject() != null){
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
+        catch (Exception e){
+            System.out.println(e.getMessage());
+            return false;
+        }
+    }
 
 }
