@@ -1,11 +1,12 @@
 package domain.model.dbo;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import domain.model.valueObject.Category;
 
 import java.util.Date;
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class BlogEntryDbo {
-  private Long id;
   private String title;
   private Date datecreated;
   private Category category;
@@ -14,22 +15,13 @@ public class BlogEntryDbo {
 
   public BlogEntryDbo(){}
 
-  public BlogEntryDbo(Long id, String title, java.sql.Timestamp datecreated,
+  public BlogEntryDbo(String title, java.sql.Timestamp datecreated,
                       Category category, String author, String contents){
-      this.id = id;
       this.title = title;
       this.datecreated = datecreated;
       this.category = category;
       this.author = author;
       this.contents = contents;
-  }
-
-  public Long getId() {
-    return id;
-  }
-
-  public void setId(Long id) {
-    this.id = id;
   }
 
   public String getTitle() {

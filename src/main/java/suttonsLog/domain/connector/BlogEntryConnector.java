@@ -3,6 +3,7 @@ package suttonsLog.domain.connector;
 import domain.model.response.BlogEntryResponse;
 import domain.service.impl.BlogEntryService;
 import suttonsLog.domain.mapper.BlogEntryResponseMapper;
+import suttonsLog.domain.mapper.BlogMapper;
 import suttonsLog.domain.model.BlogEntry;
 import suttonsLog.domain.model.BlogEntryCreateResponse;
 
@@ -15,11 +16,6 @@ import java.util.List;
 public class BlogEntryConnector {
     BlogEntryService blogEntryService = new BlogEntryService();
     BlogEntryResponseMapper blogEntryResponseMapper = new BlogEntryResponseMapper();
-
-    public BlogEntryCreateResponse createBlogEntry() {
-
-        return new BlogEntryCreateResponse(true);
-    }
 
     public BlogEntry getLatestBlogEntry() {
         BlogEntry blogEntry = null;
@@ -38,7 +34,6 @@ public class BlogEntryConnector {
 
     public List<BlogEntry> getAllBlogEntries() {
         List<BlogEntry> blogEntries = new LinkedList<BlogEntry>();
-        BlogEntry blogEntry = null;
         BlogEntryResponse blogEntryResponse = null;
 
         try {
@@ -50,5 +45,18 @@ public class BlogEntryConnector {
         }
 
         return blogEntries;
+    }
+
+    public boolean createBlogEntry(BlogEntry blogEntry) {
+        BlogMapper blogMapper = new BlogMapper();
+        BlogEntryResponse blogEntryResponse = null;
+        blogEntryResponse = blogEntryService.createBlogEntry(blogMapper.blogEntryToDbo(blogEntry));
+
+        if(blogEntryResponse.getSuccessful()){
+            return true;
+        }
+        else {
+            return false;
+        }
     }
 }

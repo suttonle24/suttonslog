@@ -13,12 +13,12 @@ import java.util.List;
 public class BlogService implements IBlogService {
     private BlogEntryConnector blogEntryConnector = new BlogEntryConnector();
 
-    public BlogEntryCreateResponse createBlogEntry(BlogEntry blogEntry){
+    public boolean createBlogEntry(BlogEntry blogEntry){
         try {
-            return blogEntryConnector.createBlogEntry();
+            return blogEntryConnector.createBlogEntry(blogEntry);
         }
         catch(Exception e) {
-            return new BlogEntryCreateResponse(false);
+            return false;
         }
     }
 

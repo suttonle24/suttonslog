@@ -1,6 +1,7 @@
 package domain.mapper;
 
 import domain.model.dbo.BlogEntryDbo;
+import domain.model.valueObject.Category;
 import org.springframework.stereotype.Component;
 
 import java.sql.ResultSet;
@@ -14,10 +15,9 @@ public class BlogEntryResponseMapper {
         BlogEntryDbo blogEntryDbo = new BlogEntryDbo();
 
         try {
-            blogEntryDbo.setId(queryResult.getLong("id"));
             blogEntryDbo.setTitle(queryResult.getString("title"));
             blogEntryDbo.setDatecreated(queryResult.getTimestamp("dateCreated"));
-            //blogEntryDbo.setCategory(queryResult.getString("category"));
+            blogEntryDbo.setCategory(Category.valueOf(queryResult.getString("category")));
             blogEntryDbo.setAuthor(queryResult.getString("author"));
             blogEntryDbo.setContents(queryResult.getString("contents"));
         }

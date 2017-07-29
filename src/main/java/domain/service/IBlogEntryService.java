@@ -1,5 +1,6 @@
 package domain.service;
 
+import domain.model.dbo.BlogEntryDbo;
 import domain.model.response.BlogEntryResponse;
 
 /**
@@ -8,4 +9,5 @@ import domain.model.response.BlogEntryResponse;
 public interface IBlogEntryService {
     public BlogEntryResponse getLatestBlogEntry();
     public BlogEntryResponse getAllBlogEntries();
+    public BlogEntryResponse createBlogEntry(BlogEntryDbo blogEntryDbo);
 }

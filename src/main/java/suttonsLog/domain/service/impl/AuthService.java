@@ -21,11 +21,9 @@ public class AuthService implements IAuthService {
 
             if(user != null) {
                 if(user.getPassword().equals(password)){
-                    System.out.print("Yay!");
                     return authMapper.MapAuthResponse(user);
                 }
                 else {
-                    System.out.print("Boo!");
                     return authMapper.MapAuthResponse(new User());
                 }
             }
