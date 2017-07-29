@@ -18,7 +18,7 @@
         <a href="/admin/create">Update Post</a>
     </div>
     <div class="content">
-        <form action="../phpCommands/submit.php" method="post">
+        <form id="blogForm">
             <h2 class="page-head">Add a new entry . . .</h2>
             <ul id="blog-submit">
                 <li>
@@ -62,7 +62,7 @@
                     <textarea name="contents" id="contents" rows="4" cols="50"></textarea>
                 </li>
                 <li>
-                    <input class="submit" name="submit" type="submit" value="Submit blog entry" title="Submit blog entry" />
+                    <input id="submit" class="submit" name="submit" type="button" value="Submit blog entry" title="Submit blog entry" />
                 </li>
             </ul>
         </form>

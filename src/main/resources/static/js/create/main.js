@@ -9,6 +9,7 @@ requirejs.config({
         mockjax: 'libs/mockjax',
         dataHandling: 'dataHandling',
         namespace: 'create/namespace',
+        successView: 'create/views/successView',
         tinyMCE: 'libs/tinymce/tinymce.min'
     },
     shim: {
@@ -234,4 +235,23 @@ define(['dataHandling', 'namespace', 'jquery', 'handlebars', 'tinyMCE'], functio
         input.addEventListener('blur', function () { input.classList.remove('has-focus'); });
 
     });
+
+    $('#submit').on('click', function(e){
+        e.preventDefault();
+        tinymce.get('contents').save();
+        console.log('clickity click');
+        submitBlog($(this));
+    });
+
+    submitBlog = function($submitBtn){
+        $submitBtn.attr('disabled', 'disabled');
+
+        var submitBlog = dataHandling.sendData(
+            'post',
+            '/submitPost.json',
+            $('#blogForm').serializeArray(),
+            'submitPost',
+            suttonsLog.create.views.loginView
+        );
+    };
 });

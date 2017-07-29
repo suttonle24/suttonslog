@@ -121,6 +121,7 @@ public class BlogEntryConnector {
 
             WriteResult result = blogs.insert(blogEntryDbo);
 
+            // todo - error mapping BSON to POJOs, perhaps do away with ID field.
             if(result.getSavedObject() != null){
                 return true;
             }

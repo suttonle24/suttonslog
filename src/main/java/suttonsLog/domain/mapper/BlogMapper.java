@@ -11,7 +11,7 @@ public class BlogMapper {
         DateMapper dateMapper = new DateMapper();
 
         blogEntryDbo.setTitle(blogEntry.getTitle());
-        blogEntryDbo.setDatecreated(new Date(blogEntry.getBlogDate().getDateString()));
+        blogEntryDbo.setDatecreated(new Date());
         blogEntryDbo.setCategory(blogEntry.getCategory());
         blogEntryDbo.setAuthor(blogEntry.getAuthor());
         blogEntryDbo.setContents(blogEntry.getContents());
