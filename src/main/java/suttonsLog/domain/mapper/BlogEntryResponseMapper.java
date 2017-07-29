@@ -17,7 +17,6 @@ public class BlogEntryResponseMapper {
         DateMapper dateMapper = new DateMapper();
         
         try{
-            blogEntry.setId(blogEntryResponse.getBlogEntryDbo().getId());
             blogEntry.setTitle(blogEntryResponse.getBlogEntryDbo().getTitle());
             blogEntry.setBlogDate(dateMapper.mapBlogDate(blogEntryResponse.getBlogEntryDbo().getDatecreated()));
             blogEntry.setCategory(blogEntryResponse.getBlogEntryDbo().getCategory());
@@ -42,7 +41,6 @@ public class BlogEntryResponseMapper {
                 BlogEntryDbo blogEntryDbo = i.next();
                 BlogEntry blogEntry = new BlogEntry();
 
-                blogEntry.setId(blogEntryDbo.getId());
                 blogEntry.setTitle(blogEntryDbo.getTitle());
                 blogEntry.setBlogDate(dateMapper.mapBlogDate(blogEntryDbo.getDatecreated()));
                 blogEntry.setCategory(blogEntryDbo.getCategory());

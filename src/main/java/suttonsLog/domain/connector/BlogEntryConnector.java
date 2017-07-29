@@ -34,7 +34,6 @@ public class BlogEntryConnector {
 
     public List<BlogEntry> getAllBlogEntries() {
         List<BlogEntry> blogEntries = new LinkedList<BlogEntry>();
-        BlogEntry blogEntry = null;
         BlogEntryResponse blogEntryResponse = null;
 
         try {
