@@ -9,17 +9,27 @@ import domain.model.dbo.BlogEntryDbo;
 import org.mongojack.DBCursor;
 import org.mongojack.JacksonDBCollection;
 import org.mongojack.WriteResult;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mongodb.MongoDbFactory;
+import org.springframework.stereotype.Component;
+
 import java.util.LinkedList;
 import java.util.List;
 
 /**
  * Created by leens on 8/10/2016.
  */
+@Component
 public class BlogEntryConnector {
-    private final String IP = "192.168.1.199";
-    private final int PORT = 27017;
+
+    private final MongoDbFactory mongo;
     private final String DATABASE = "local";
     private final String COLLECTION = "blogs";
+
+    @Autowired
+    public BlogEntryConnector(MongoDbFactory mongo) {
+        this.mongo = mongo;
+    }
 
     BlogEntryResponseMapper blogEntryResponseMapper = new BlogEntryResponseMapper();
 
@@ -27,8 +37,7 @@ public class BlogEntryConnector {
         BlogEntryDbo latestBlog = null;
 
         try {
-            MongoClient mongoClient = new MongoClient(IP, PORT);
-            DB db = mongoClient.getDB(DATABASE);
+            DB db = mongo.getDb(DATABASE);
             DBCollection collection = db.getCollection(COLLECTION);
             JacksonDBCollection<BlogEntryDbo, String> blogs = JacksonDBCollection.wrap(collection, BlogEntryDbo.class, String.class);
 
@@ -52,8 +61,7 @@ public class BlogEntryConnector {
         List<BlogEntryDbo> blogEntries = new LinkedList<>();
 
         try {
-            MongoClient mongoClient = new MongoClient(IP, PORT);
-            DB db = mongoClient.getDB(DATABASE);
+            DB db = mongo.getDb(DATABASE);
             DBCollection collection = db.getCollection(COLLECTION);
             JacksonDBCollection<BlogEntryDbo, String> blogs = JacksonDBCollection.wrap(collection, BlogEntryDbo.class, String.class);
 
@@ -80,8 +88,7 @@ public class BlogEntryConnector {
 
     public boolean createBlogEntry(BlogEntryDbo blogEntryDbo){
         try {
-            MongoClient mongoClient = new MongoClient(IP, PORT);
-            DB db = mongoClient.getDB(DATABASE);
+            DB db = mongo.getDb(DATABASE);
             DBCollection collection = db.getCollection(COLLECTION);
             JacksonDBCollection<BlogEntryDbo, String> blogs = JacksonDBCollection.wrap(collection, BlogEntryDbo.class, String.class);
 

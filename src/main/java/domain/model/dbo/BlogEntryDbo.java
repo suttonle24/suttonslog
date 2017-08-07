@@ -2,11 +2,16 @@ package domain.model.dbo;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import domain.model.valueObject.Category;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.Date;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
+@Document(collection = "blogs")
 public class BlogEntryDbo {
+  @Id
+  private long id;
   private String title;
   private Date datecreated;
   private Category category;

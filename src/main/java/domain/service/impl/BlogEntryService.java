@@ -4,6 +4,7 @@ import domain.connector.BlogEntryConnector;
 import domain.model.dbo.BlogEntryDbo;
 import domain.model.response.BlogEntryResponse;
 import domain.service.IBlogEntryService;
+import org.springframework.data.mongodb.MongoDbFactory;
 
 import java.util.List;
 
