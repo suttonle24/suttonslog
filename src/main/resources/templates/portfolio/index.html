@@ -1,0 +1,47 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Sutton's Log - The Portfolio</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, user-scalable=no" />
+    <meta property="og:image" content="http://suttonslog.com/images/logo.png"/>
+    <link rel="stylesheet" type="text/css" th:href="@{css/portfolio.css}" />
+    <script data-main="js/portfolio/main" th:src="@{js/libs/require.js}"></script>
+    <!--<script src="../scripts/jquery-1.11.1.min.js"></script>
+    <script src="../scripts/modernizr.js"></script>
+    <script src="../scripts/jquery.waitforimages.min.js"></script>
+    <script src="../scripts/jquery.carousel.js"></script>-->
+</head>
+<body>
+<div class="wrapper">
+    <h1>The Portfolio</h1>
+    <div class="logo">
+        <img src="../images/portfolio/me.png" alt="Me" />
+    </div>
+    <div class="navigation">
+        <a class="first" href="../index.php">Blog</a>
+        <a href="#">Portfolio</a>
+        <a href="Resume.docx" target="_blank">Resume</a>
+    </div>
+    <div class="mobile-nav">
+        <img class="nav-toggle" src="../images/portfolio/mobileNav.png" alt="Site Navigation" />
+        <div class="mobile-nav-items">
+            <a class="first" href="../index.php">Blog</a>
+            <a href="#">Portfolio</a>
+            <a href="http://sdrv.ms/1jfkluF" target="_blank">Resume</a>
+        </div>
+    </div>
+    <div class="hero">
+        <div class="carousel-window">
+            <div class="carousel"></div>
+        </div>
+        <div class="carousel-pages"></div>
+        <div class="carousel-control carousel-left inactive"><img src="../images/portfolio/hero_nav_prev.png" alt="previous" /></div>
+        <div class="carousel-control carousel-right"><img src="../images/portfolio/hero_nav_next.png" alt="next" /></div>
+    </div>
+</div>
+<div class="content">
+</div>
+<script src="../scripts/portfolio.js"></script>
+</body>
+</html>
