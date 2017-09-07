@@ -1,7 +1,7 @@
-define(['namespace', 'jquery', 'handlebars', 'hbsHelpers'], function(suttonsLog, $, Handlebars) {
+define(['namespace', 'jquery', 'handlebars'], function(suttonsLog, $, Handlebars) {
     suttonsLog.portfolio.views.projectsView = function(projects){
         if(projects.success){
-            var source   = $("#projectsTemplate").html();
+            var source   = $("#projectTemplate").html();
             var template = Handlebars.compile(source);
             $('#projectsContainer').html(template(projects.data));
         }

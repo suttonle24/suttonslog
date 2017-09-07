@@ -10,7 +10,7 @@ requirejs.config({
     }
 });
 
-define(['dataHandling', 'namespace', 'jquery', 'handlebars', 'hbsHelpers', 'projectsView'],
+define(['dataHandling', 'namespace', 'jquery', 'handlebars', 'projectsView'],
     function(dataHandling, suttonsLog, $, Handlebars) {
     suttonsLog.portfolio.main = function(){
         if($('#mockData').val() === "true"){
@@ -29,9 +29,9 @@ define(['dataHandling', 'namespace', 'jquery', 'handlebars', 'hbsHelpers', 'proj
 
         // TODO - re-implement for getting a single project at a time...
         var projects = dataHandling.getData(
-            'GET',
-            'http://api.openweathermap.org/data/2.5/weather?id=5802340&APPID=b5928ee8c96cf5f4fac7f4cf6098f831',
-            'currentWeather',
+            'POST',
+            '/getProjects.json',
+            'projects',
             suttonsLog.portfolio.views.projectsView
         );
     };

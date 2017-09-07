@@ -4,7 +4,6 @@ import com.mongodb.BasicDBObject;
 import com.mongodb.DB;
 import com.mongodb.DBCollection;
 import com.mongodb.MongoClient;
-import domain.mapper.BlogEntryResponseMapper;
 import domain.model.dbo.BlogEntryDbo;
 import org.mongojack.DBCursor;
 import org.mongojack.JacksonDBCollection;
@@ -20,8 +19,6 @@ public class BlogEntryConnector {
     private final int PORT = 27017;
     private final String DATABASE = "local";
     private final String COLLECTION = "blogs";
-
-    BlogEntryResponseMapper blogEntryResponseMapper = new BlogEntryResponseMapper();
 
     public BlogEntryDbo getLatestBlogEntry(){
         BlogEntryDbo latestBlog = null;
