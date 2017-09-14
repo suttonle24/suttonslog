@@ -1,0 +1,55 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Sutton's Log - The Portfolio</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, user-scalable=no" />
+    <meta property="og:image" content="http://suttonslog.com/images/logo.png"/>
+    <link rel="stylesheet" type="text/css" th:href="@{css/portfolio.css}" />
+    <script data-main="js/portfolio/main" th:src="@{js/libs/require.js}"></script>
+    <!--<script src="../scripts/jquery-1.11.1.min.js"></script>
+    <script src="../scripts/modernizr.js"></script>
+    <script src="../scripts/jquery.waitforimages.min.js"></script>
+    <script src="../scripts/jquery.carousel.js"></script>-->
+</head>
+<body>
+<div class="wrapper">
+    <h1>The Portfolio</h1>
+    <div class="logo">
+        <img src="../images/portfolio/me.png" alt="Me" />
+    </div>
+    <div class="navigation">
+        <a class="first" href="../">Blog</a>
+        <a href="#">Portfolio</a>
+        <a href="Resume.docx" target="_blank">Resume</a>
+    </div>
+    <div class="mobile-nav">
+        <img class="nav-toggle" src="../images/portfolio/mobileNav.png" alt="Site Navigation" />
+        <div class="mobile-nav-items">
+            <a class="first" href="../">Blog</a>
+            <a href="#">Portfolio</a>
+            <a href="../docs/resume.docx" target="_blank">Resume</a>
+        </div>
+    </div>
+    <div class="hero">
+        <div class="carousel-window">
+            <div id="projectsContainer" class="carousel"></div>
+            <div class="carousel-pages"></div>
+            <div class="carousel-control carousel-left inactive"><img src="../images/portfolio/hero_nav_prev.png" alt="previous" /></div>
+            <div class="carousel-control carousel-right"><img src="../images/portfolio/hero_nav_next.png" alt="next" /></div>
+        </div>
+    </div>
+    <div class="content">
+    </div>
+</div>
+<div th:replace="portfolio/views/projectView"></div>
+<div th:replace="portfolio/projects/gatesNewsletter"></div>
+<div th:replace="portfolio/projects/gatesTimeline"></div>
+<div th:replace="portfolio/projects/hidoe"></div>
+<div th:replace="portfolio/projects/myFirstServer"></div>
+<div th:replace="portfolio/projects/pcSelector"></div>
+<div th:replace="portfolio/projects/siteDocumentation"></div>
+<div th:replace="portfolio/projects/sunLake"></div>
+<div th:replace="portfolio/projects/thePortfolio"></div>
+</body>
+</html>
