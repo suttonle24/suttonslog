@@ -9,6 +9,7 @@ import org.mongojack.DBCursor;
 import org.mongojack.JacksonDBCollection;
 import org.springframework.util.Assert;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ProjectConnector {
@@ -43,7 +44,7 @@ public class ProjectConnector {
     }
 
     public List<ProjectDbo> getProjects(){
-        List<ProjectDbo> projectDbos = null;
+        List<ProjectDbo> projectDbos = new ArrayList<>();
 
         try {
             MongoClient mongoClient = new MongoClient(IP, PORT);
@@ -54,7 +55,7 @@ public class ProjectConnector {
 
             BasicDBObject query = new BasicDBObject("id", -1);
 
-            DBCursor<ProjectDbo> result = projects.find().sort(query).limit(1);
+            DBCursor<ProjectDbo> result = projects.find().sort(query);
 
             while(result.hasNext()){
                 try {

@@ -5,6 +5,7 @@ import domain.service.impl.ProjectService;
 import suttonsLog.domain.mapper.ProjectResponseMapper;
 import suttonsLog.domain.model.Project;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ProjectConnector {
@@ -27,17 +28,15 @@ public class ProjectConnector {
     }
 
     public List<Project> getProjects() {
-        List<Project> projects = null;
-        ProjectResponse projectResponse = null;
-
         try {
-            projectResponse = projectService.getProjects();
-            projects = projectResponseMapper.mapProjectsResponse(projectResponse);
+            ProjectResponse projectResponse = projectService.getProjects();
+            List<Project> projects = projectResponseMapper.mapProjectsResponse(projectResponse);
+
+            return projects;
         }
         catch(Exception e) {
             System.out.println(e.getMessage());
+            return null;
         }
-
-        return projects;
     }
 }

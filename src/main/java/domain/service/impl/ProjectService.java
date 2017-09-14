@@ -5,6 +5,7 @@ import domain.model.dbo.ProjectDbo;
 import domain.model.response.ProjectResponse;
 import domain.service.IProjectService;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ProjectService implements IProjectService {
@@ -19,10 +20,9 @@ public class ProjectService implements IProjectService {
     }
 
     public ProjectResponse getProjects() {
-        List<ProjectDbo> projects = null;
         ProjectConnector connector = new ProjectConnector();
 
-        projects = connector.getProjects();
+        List<ProjectDbo> projects = connector.getProjects();
 
         return new ProjectResponse(projects, null, null);
     }

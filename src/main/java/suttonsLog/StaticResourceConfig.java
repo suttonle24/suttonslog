@@ -14,19 +14,22 @@ import java.io.File;
 public class StaticResourceConfig extends WebMvcConfigurerAdapter {
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        String slash = System.getProperty("file.separator");
-        String path;
+        final String SLASH = System.getProperty("file.separator");
         try {
             // add mapping to blogPhotos upload directory
-            path = new File(".").getCanonicalPath() + slash + "blogPhotos" + slash;
+            String blogPhotosPath = new File(".").getCanonicalPath() + SLASH + "blogPhotos" + SLASH;
+            String docsPath = new File(".").getCanonicalPath() + SLASH + "docs" + SLASH;
 
             if(SystemUtils.IS_OS_WINDOWS){
-                path = "file:///" + path.replace("\\", "/");
+                blogPhotosPath = "file:///" + blogPhotosPath.replace("\\", "/");
+                docsPath = "file:///" + docsPath.replace("\\", "/");
             }
+
+            registry.addResourceHandler("/blogPhotos/**").addResourceLocations(blogPhotosPath);
+            registry.addResourceHandler("/docs/**").addResourceLocations(docsPath);
         }
         catch (Exception e) {
-            path = "borked";
+            System.out.println("Exception while setting up mapped paths. Exception: " + e.getMessage());
         }
-        registry.addResourceHandler("/blogPhotos/**").addResourceLocations(path);
     }
 }

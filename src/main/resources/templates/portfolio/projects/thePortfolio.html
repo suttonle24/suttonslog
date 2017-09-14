@@ -1,0 +1,39 @@
+<script id="thePortfolio" type="text/x-handlebars-template">
+<header>
+	<h2>The Portfolio</h2>
+</header>
+
+<article>
+	<h4>Technologies and applications used:</h4>
+  	<ul>
+		<li>Dreamweaver CS4</li>
+		<li>Photoshop CS5</li>
+      	<li>JavaScript</li>
+      	<li>jQuery</li>
+      	<li>HTML5</li>
+      	<li>CSS3</li>
+		<li>PHP</li>
+		<li>SQL</li>
+  	</ul>
+	<img class="image-left" src="../../images/portfolio/recursion.jpg" alt="Obligatory Meme" />
+	<p>
+		Do you feel a little 'Inception' vibe coming off of this slide? After developing the site and showing it to a few people, one of my friends pointed out that I really should use the portfolio site, itself, as one of the featured projects. It was a great idea, considering all the technology that I had packed into the site.
+	</p>
+	<p>
+<strong>Sutton's Log – The Portfolio</strong> is fluidly responsive and looks good on whatever screen you're using, from tablets to Win8 snap view and lower-res smartphones. I accomplished this mainly by using percentage widths in conjunction with max-width values. However, I do have four CSS3 media queries in use to size down fonts and images as needed, and to uncover the mobile-friendly navigation piece.
+	</p>
+	<p>
+The hero carousel is driven by a jQuery plugin that I originally wrote for another project. I wanted this project to be fluidly responsive, but my carousel plugin at the time was not. So, I had to augment the plugin with a few extra functions that would recalculate element dimensions, reposition them, and retain the current position of the carousel as the user resizes the window.
+	</p>
+	<p>
+Beneath all the pretty responsiveness and fluid motion lies a foundation of SQL and PHP. I used the Sutton's Log site as a project to teach myself about database integration, and put what I learned to good use in the development of The Portfolio. In The Portfolio, I am using a PHP 'while' loop to spit out the projects from a 'Portfolio_Content' data table into the hero carousel. Each project entry contains data for:  project image &amp; alt text, sort order, and content link. Whenever the user clicks on another project, the content link data attribute is picked up by the carousel plugin and updates the 'src' attribute of the iframe below the hero to display the project's corresponding content.
+	</p>
+	<p>
+All in all, this was a really fun project. Over and over, I found that it was keeping me up well into the night because of how unwittingly invested in it I became. I hope that you find it to be a helpful compliment to the credentials that I have down on 'paper.'
+	</p>
+</article>
+
+<footer>
+	<a class="cta" href="#">You're already here</a>
+</footer>
+</script>

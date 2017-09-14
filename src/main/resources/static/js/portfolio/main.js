@@ -6,7 +6,9 @@ requirejs.config({
         mockjax: 'libs/mockjax',
         dataHandling: 'dataHandling',
         namespace: 'portfolio/namespace',
-        projectsView: 'portfolio/views/projectsView'
+        projectsView: 'portfolio/views/projectsView',
+        jqueryCarousel: 'libs/jquery.carousel',
+        waitForImages: 'libs/jquery.waitforimages.min'
     }
 });
 
@@ -25,15 +27,14 @@ define(['dataHandling', 'namespace', 'jquery', 'handlebars', 'projectsView'],
     };
 
     suttonsLog.portfolio.initPage = function(){
-
-
-        // TODO - re-implement for getting a single project at a time...
         var projects = dataHandling.getData(
-            'POST',
+            'GET',
             '/getProjects.json',
             'projects',
             suttonsLog.portfolio.views.projectsView
         );
+
+
     };
 
     suttonsLog.portfolio.main();

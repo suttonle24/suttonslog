@@ -4,6 +4,7 @@ import domain.model.dbo.ProjectDbo;
 import domain.model.response.ProjectResponse;
 import suttonsLog.domain.model.Project;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ProjectResponseMapper {
@@ -13,7 +14,7 @@ public class ProjectResponseMapper {
     }
 
     public List<Project> mapProjectsResponse(ProjectResponse projectResponse) {
-        List<Project> projects = null;
+        List<Project> projects = new ArrayList<>();
 
         for(ProjectDbo projectDbo : projectResponse.getProjectDbos()) {
             projects.add(mapProject(projectDbo));
